@@ -74,8 +74,9 @@ Four required experiments + two optional stretch experiments. Pull stretch ones 
 - [x] `experiments/e06-camera-and-collision`
   - Acceptance: 2D camera supports translate + zoom via input; AABB and circle collision tested with at least one moving and one static body; collision flags rendered as colored outlines.
   - Current: camera/collision behavior test, project build, and automated pan/zoom/collision smoke passed.
-- [ ] `experiments/e07-animation`
+- [x] `experiments/e07-animation`
   - Acceptance: sprite animates frame-by-frame; idle/walk/jump state machine reacts to input; transitions logged to stdout when they fire.
+  - Current: animation/state-machine behavior test, project build, and automated transition smoke passed.
 - [ ] `experiments/e10-publishing`
   - Acceptance: `dotnet publish -c Release -r osx-x64` (and/or `osx-arm64`) produces a runnable bundle; the bundle launches without the SDK on PATH; bundle layout documented.
 
