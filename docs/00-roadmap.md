@@ -24,9 +24,9 @@ Goal: working mental model of MonoGame; can scaffold and run basic projects from
 
 ### Notes to write
 
-- [ ] `docs/01-monogame-overview.md` — what MonoGame is, what it isn't, lifecycle in plain language.
-- [ ] `docs/02-engine-comparison.md` — initial draft of MonoGame vs Unity / Godot / raylib / hand-rolled.
-- [ ] `docs/03-content-pipeline.md` — MGCB workflow, build vs runtime, file formats.
+- [x] `docs/01-monogame-overview.md` — what MonoGame is, what it isn't, lifecycle in plain language.
+- [x] `docs/02-engine-comparison.md` — initial draft of MonoGame vs Unity / Godot / raylib / hand-rolled.
+- [x] `docs/03-content-pipeline.md` — MGCB workflow, build vs runtime, file formats.
 
 ### Experiments
 
@@ -57,8 +57,8 @@ Without these three sections, the experiment is not done — even if the program
 
 - [x] I can `dotnet new mgdesktopgl -o experiments/eXX-foo -n EXXFoo` and add the project to `GameDemo.sln` from memory.
 - [x] I can load a PNG and a `SpriteFont` and render them at a known position without rereading docs.
-- [ ] I can articulate, in writing, what `Initialize` / `LoadContent` / `Update` / `Draw` each own and on what thread they run.
-- [ ] All four Week 1 experiments build, run, and pass their acceptance checks.
+- [x] I can articulate, in writing, what `Initialize` / `LoadContent` / `Update` / `Draw` each own and on what thread they run.
+- [x] All four Week 1 experiments build, run, and pass their acceptance checks.
 
 ## Week 2 — Capability Experiments
 
