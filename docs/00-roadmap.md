@@ -39,8 +39,9 @@ Goal: working mental model of MonoGame; can scaffold and run basic projects from
 - [x] `experiments/e03-input`
   - Acceptance: keyboard, mouse, and (if available) gamepad each move a sprite; edge-detection helper distinguishes "pressed this frame" from "held".
   - Current: behavior test, keyboard/mouse/gamepad-style smoke, and solution build passed.
-- [ ] `experiments/e05-content-pipeline`
+- [x] `experiments/e05-content-pipeline`
   - Acceptance: at least one PNG, one `SpriteFont`, and one audio clip load via Content; one deliberate `.mgcb` error is reproduced and the failure mode is documented in the experiment README.
+  - Current: PNG, SpriteFont, WAV, smoke test, deliberate MGCB failure, and solution build passed.
 
 ### Per-experiment README requirement
 
@@ -54,8 +55,8 @@ Without these three sections, the experiment is not done — even if the program
 
 ### Exit criteria for Week 1
 
-- [ ] I can `dotnet new mgdesktopgl -o experiments/eXX-foo -n EXXFoo` and add the project to `GameDemo.sln` from memory.
-- [ ] I can load a PNG and a `SpriteFont` and render them at a known position without rereading docs.
+- [x] I can `dotnet new mgdesktopgl -o experiments/eXX-foo -n EXXFoo` and add the project to `GameDemo.sln` from memory.
+- [x] I can load a PNG and a `SpriteFont` and render them at a known position without rereading docs.
 - [ ] I can articulate, in writing, what `Initialize` / `LoadContent` / `Update` / `Draw` each own and on what thread they run.
 - [ ] All four Week 1 experiments build, run, and pass their acceptance checks.
 

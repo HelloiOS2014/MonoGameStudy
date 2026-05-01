@@ -1,0 +1,14 @@
+
+# Deliberately broken MGCB file used to document content-pipeline failure mode.
+
+/outputDir:bin/DesktopGL
+/intermediateDir:obj/DesktopGL
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#begin Images/missing_texture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Images/missing_texture.png
