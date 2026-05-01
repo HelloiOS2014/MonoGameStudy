@@ -77,8 +77,9 @@ Four required experiments + two optional stretch experiments. Pull stretch ones 
 - [x] `experiments/e07-animation`
   - Acceptance: sprite animates frame-by-frame; idle/walk/jump state machine reacts to input; transitions logged to stdout when they fire.
   - Current: animation/state-machine behavior test, project build, and automated transition smoke passed.
-- [ ] `experiments/e10-publishing`
+- [x] `experiments/e10-publishing`
   - Acceptance: `dotnet publish -c Release -r osx-x64` (and/or `osx-arm64`) produces a runnable bundle; the bundle launches without the SDK on PATH; bundle layout documented.
+  - Current: behavior test, Debug build, development smoke, self-contained `osx-x64` publish, and published executable smoke without `dotnet` on `PATH` passed.
 
 ### Optional stretch experiments
 
@@ -89,23 +90,25 @@ Four required experiments + two optional stretch experiments. Pull stretch ones 
 
 ### Notes to update
 
-- [ ] `docs/02-engine-comparison.md` updated with a "what's painful in MonoGame" subsection citing specific experiments.
-- [ ] `docs/04-platforms-and-publishing.md` exists with the publishing findings from `e10-publishing`.
+- [x] `docs/02-engine-comparison.md` updated with a "what's painful in MonoGame" subsection citing specific experiments.
+- [x] `docs/04-platforms-and-publishing.md` exists with the publishing findings from `e10-publishing`.
 
 ### Stretch decision
 
 Record here at end of Week 2 whether `e08-basic-3d` and `e09-shader` were:
 
 - [ ] completed,
-- [ ] deferred to Week 3 if time allows in the integrated demo,
+- [x] deferred to Week 3 if time allows in the integrated demo,
 - [ ] dropped to follow-up phase.
+
+Decision: defer `e08-basic-3d` and `e09-shader` to Week 3 only if the integrated demo naturally needs them. The required Week 2 evidence is already enough to make the first-pass MonoGame tradeoff call, and forcing 3D/shader work now would compete with the demo/evaluation goal.
 
 ### Exit criteria for Week 2
 
-- [ ] All four required Week 2 experiments build and run on macOS DesktopGL.
-- [ ] Each completed experiment README is non-empty with the three required sections.
-- [ ] A first-pass "should I keep using MonoGame?" opinion exists in scratch form, supported by experiment evidence.
-- [ ] Stretch decision above is filled in.
+- [x] All four required Week 2 experiments build and run on macOS DesktopGL.
+- [x] Each completed experiment README is non-empty with the three required sections.
+- [x] A first-pass "should I keep using MonoGame?" opinion exists in scratch form, supported by experiment evidence.
+- [x] Stretch decision above is filled in.
 
 ## Week 3 — Integrated Demo And Evaluation
 

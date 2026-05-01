@@ -47,3 +47,11 @@ For this learning project, MonoGame is a better middle ground: enough framework 
 - MGCB local tools must be restored per project.
 - MonoGame build targets glob `**/*.mgcb` by default, so deliberately broken MGCB files must be excluded or kept outside the project.
 - On-screen text requires a `SpriteFont` asset and content build; there is no immediate-mode debug text helper in the base template.
+- `e04-audio` showed audio API split: `SoundEffect` is direct, but longer music goes through global `MediaPlayer` state.
+- `e06-camera-and-collision` confirmed camera, collision primitives, and debug drawing are all user code.
+- `e07-animation` confirmed frame timing and state-machine transitions are also user code; MonoGame does not provide animation graphs.
+- `e10-publishing` produced a runnable self-contained directory, but not a polished `.app` bundle, installer, signing, or notarization workflow.
+
+## First-Pass Opinion After Required Week 2 Experiments
+
+MonoGame still looks useful for a code-first 2D project where owning the loop, rendering, input, audio, camera, collision, and animation code is part of the goal. It looks weak if the project needs editor-driven iteration, built-in animation tooling, scene composition, or turnkey macOS packaging. For this learning project, that tradeoff is acceptable: the framework exposes the engine-shaped work instead of hiding it.
