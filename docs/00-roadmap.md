@@ -32,6 +32,7 @@ Goal: working mental model of MonoGame; can scaffold and run basic projects from
 
 - [ ] `experiments/e01-game-loop`
   - Acceptance: window opens at fixed 60 Hz; F1 toggles fixed/variable timestep; frame number printed each second to stdout.
+  - Current: implementation, loop-state test, build, and fixed-mode run smoke passed; manual F1 keypress check still pending.
 - [ ] `experiments/e02-2d-rendering`
   - Acceptance: 1000 sprites render at ≥60 fps on the dev machine; F1 toggles batched vs unbatched draw and on-screen frame-time text reflects the difference.
 - [ ] `experiments/e03-input`
