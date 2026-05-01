@@ -36,8 +36,9 @@ Goal: working mental model of MonoGame; can scaffold and run basic projects from
 - [x] `experiments/e02-2d-rendering`
   - Acceptance: 1000 sprites render at ≥60 fps on the dev machine; F1 toggles batched vs unbatched draw and on-screen frame-time text reflects the difference.
   - Current: behavior test, solution build, SpriteFont/texture content load, and automated batched/unbatched smoke passed.
-- [ ] `experiments/e03-input`
+- [x] `experiments/e03-input`
   - Acceptance: keyboard, mouse, and (if available) gamepad each move a sprite; edge-detection helper distinguishes "pressed this frame" from "held".
+  - Current: behavior test, keyboard/mouse/gamepad-style smoke, and solution build passed.
 - [ ] `experiments/e05-content-pipeline`
   - Acceptance: at least one PNG, one `SpriteFont`, and one audio clip load via Content; one deliberate `.mgcb` error is reproduced and the failure mode is documented in the experiment README.
 
