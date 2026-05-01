@@ -33,8 +33,9 @@ Goal: working mental model of MonoGame; can scaffold and run basic projects from
 - [x] `experiments/e01-game-loop`
   - Acceptance: window opens at fixed 60 Hz; F1 toggles fixed/variable timestep; frame number printed each second to stdout.
   - Current: implementation, loop-state test, build, fixed-mode run smoke, and automated toggle smoke passed.
-- [ ] `experiments/e02-2d-rendering`
+- [x] `experiments/e02-2d-rendering`
   - Acceptance: 1000 sprites render at ≥60 fps on the dev machine; F1 toggles batched vs unbatched draw and on-screen frame-time text reflects the difference.
+  - Current: behavior test, solution build, SpriteFont/texture content load, and automated batched/unbatched smoke passed.
 - [ ] `experiments/e03-input`
   - Acceptance: keyboard, mouse, and (if available) gamepad each move a sprite; edge-detection helper distinguishes "pressed this frame" from "held".
 - [ ] `experiments/e05-content-pipeline`
