@@ -1,0 +1,24 @@
+# .NET / MonoGame
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+.vs/
+.vscode/
+.idea/
+*.swp
+
+# MonoGame Content Pipeline build artifacts
+**/Content/bin/
+**/Content/obj/
+
+# Published bundles
+publish/
+**/bin/Release/**/publish/
+
+# macOS
+.DS_Store
+
+# Tool caches
+.tool-versions
