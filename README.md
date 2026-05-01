@@ -6,7 +6,7 @@ The full design lives in [`docs/superpowers/specs/2026-04-26-monogame-research-d
 
 ## Status
 
-Phase 1, Week 0 (bootstrap). No experiments are runnable yet.
+Phase 1 is complete through the integrated demo and technical evaluation. Week 1 and Week 2 experiments are runnable, and the Week 3 demo lives in `demo/integrated-demo`.
 
 ## Target environment
 
@@ -71,6 +71,14 @@ Every experiment ships a `README.md` with three sections:
 3. **What was learned** — friction points and reusable takeaways.
 
 If those three sections are not filled in, the experiment is not done.
+
+## Running the integrated demo
+
+```bash
+dotnet run --project demo/integrated-demo/IntegratedDemo.csproj
+```
+
+The evaluation report is in [`docs/reports/monogame-technical-evaluation.md`](docs/reports/monogame-technical-evaluation.md).
 
 ## Roadmap
 

@@ -116,24 +116,24 @@ Goal: small playable demo + honest written evaluation.
 
 ### Demo
 
-- [ ] Genre chosen and recorded in `demo/integrated-demo/README.md` with one paragraph of justification, drawing from Week 2 friction findings.
-- [ ] `demo/integrated-demo` builds via `GameDemo.sln`.
-- [ ] Core loop is playable end-to-end: start screen → play → win/lose → restart or quit.
-- [ ] Decide whether to include a basic 3D or shader scene as a validation harness; record the decision and (if included) ship one such scene. Encouraged but not mandatory — only include if the optional Week 2 stretch experiments succeeded and the cost is low.
-- [ ] `demo/integrated-demo/README.md` documents controls, how to run, and known limitations.
+- [x] Genre chosen and recorded in `demo/integrated-demo/README.md` with one paragraph of justification, drawing from Week 2 friction findings.
+- [x] `demo/integrated-demo` builds via `GameDemo.sln`.
+- [x] Core loop is playable end-to-end: start screen → play → win/lose → restart or quit.
+- [x] Decide whether to include a basic 3D or shader scene as a validation harness; record the decision and (if included) ship one such scene. Encouraged but not mandatory — only include if the optional Week 2 stretch experiments succeeded and the cost is low.
+- [x] `demo/integrated-demo/README.md` documents controls, how to run, and known limitations.
 
 ### Evaluation report
 
-- [ ] `docs/reports/monogame-technical-evaluation.md` exists.
-- [ ] Each strength/weakness/risk claim cites a specific experiment or demo behavior.
-- [ ] Comparison set matches the spec: Unity, Godot, raylib, hand-rolled. No other engines introduced.
-- [ ] Closes with a one-paragraph answer to "should I keep using MonoGame for my next project?"
+- [x] `docs/reports/monogame-technical-evaluation.md` exists.
+- [x] Each strength/weakness/risk claim cites a specific experiment or demo behavior.
+- [x] Comparison set matches the spec: Unity, Godot, raylib, hand-rolled. No other engines introduced.
+- [x] Closes with a one-paragraph answer to "should I keep using MonoGame for my next project?"
 
 ### Exit criteria for Week 3
 
-- [ ] Demo can be played start-to-finish without crashing.
-- [ ] Evaluation report has zero unsupported claims.
-- [ ] Top-level `README.md` updated to point at the demo and the evaluation report.
+- [x] Demo can be played start-to-finish without crashing.
+- [x] Evaluation report has zero unsupported claims.
+- [x] Top-level `README.md` updated to point at the demo and the evaluation report.
 
 ## Abort checks (run weekly)
 
