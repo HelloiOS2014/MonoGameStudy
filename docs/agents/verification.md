@@ -40,7 +40,7 @@ git diff --check
 Docs unresolved-marker check:
 
 ```bash
-git grep -n -E "UNRESOLVED|NEEDS_DECISION|FIXME" -- README.md AGENTS.md docs/agents docs/tutorial
+git grep -n -E "UN""RESOLVED|NEEDS""_DECISION|FIX""ME" -- README.md AGENTS.md docs/agents docs/tutorial
 ```
 
 Expected when docs are complete: exit 1 with no matches.
