@@ -73,6 +73,10 @@ GUI smoke runs still open a DesktopGL window. If a smoke command hangs, prefer t
 
 macOS may also print native messages such as `TSM AdjustCapsLockLEDForKeyTransitionHandling`, `IMKCFRunLoopWakeUpReliable`, or `CSSM_ModuleLoad()`. Treat them as noise when the command exits 0 and the expected smoke lines appear.
 
+### Full tutorial dry run
+
+Run `./tools/check-tutorial.sh` from the repo root to verify the tutorial path end-to-end. The script intentionally includes one expected MGCB failure and treats it as success only when the output mentions `missing_texture.png`.
+
 ### Publish layout confusion
 
 `dotnet publish` outputs a directory, not a signed `.app`. For `e10`, the executable is under:
