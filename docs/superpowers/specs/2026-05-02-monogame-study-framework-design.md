@@ -163,6 +163,7 @@ Target sections:
 
 - `Startup`
 - `Classification`
+- `Short Task To Plan Contract`
 - `Planning Gate`
 - `Implementation Loop`
 - `Vague Continuation Prompts`
@@ -176,6 +177,8 @@ This file defines agent behavior, not human tutorial prose.
 Target sections:
 
 - `Rule`
+- `Fresh Workspace Commands`
+- `Warmed Workspace Commands`
 - `Command Matrix`
 - `GUI Smoke Notes`
 - `Failure Handling`
@@ -240,6 +243,8 @@ Required strategy:
 - Put the Human path and Agent path near the top.
 - Keep shared verification commands visible without turning the README into a command manual.
 - Move detailed research narrative below the routing sections or link to the existing docs.
+- Move the old "archive this repository and start a separate prototype" recommendation into `Phase 1 Record` as a historical note dated before this framework pass.
+- The current top-level next step must be framework usage: humans start with `docs/tutorial/README.md`; agents start with `AGENTS.md`.
 - Do not delete project history to make the repo look newly created.
 - Do not present `demo/integrated-demo` as a production-ready game.
 
@@ -352,6 +357,15 @@ This file defines the work loop:
 7. run required verification,
 8. report evidence and remaining risk.
 
+It must make short tasks operational:
+
+- A short task is enough for the agent to start classification and planning.
+- For `Docs`, narrow `Fix`, and typo-only `Tooling`, the agent may proceed after classification when the acceptance signal is observable.
+- For `Experiment`, `Demo`, broad `Tooling`, boundary changes, architecture changes, and project-direction changes, the short task triggers the agent to draft the required spec or implementation plan first.
+- In those gated cases, the agent must not edit runtime code until the user approves the drafted spec or plan.
+- The user must not need to write a long setup prompt; the agent derives repo context from `AGENTS.md`, `docs/agents/`, the current spec, and local files.
+- If acceptance is subjective or not observable, the agent must stop and convert it into an observable acceptance proposal before implementation.
+
 It must also cover vague continuation prompts. If the user says only "continue", "go", "干", "继续", or similar, the agent must inspect current repo state and the relevant roadmap/spec before choosing the next action. The agent should state the assumed task type and milestone before making changes.
 
 ### `docs/agents/verification.md`
@@ -360,14 +374,19 @@ This file is the verification matrix.
 
 It must map each task type to exact commands, including:
 
+- `dotnet restore GameDemo.sln` for fresh workspaces before `--no-restore` commands,
 - `git diff --check`,
+- `git grep -n -E "UNRESOLVED|NEEDS_DECISION|FIXME" -- <changed-md-files>` with no matches before docs completion claims,
 - `bash -n tools/check-env.sh`,
 - `bash -n tools/check-tutorial.sh`,
 - `./tools/check-env.sh`,
+- `dotnet build GameDemo.sln -m:1` for fresh workspaces,
 - `dotnet build GameDemo.sln --no-restore -m:1`,
 - targeted test projects,
 - GUI smoke commands,
 - `./tools/check-tutorial.sh` for broad tutorial/framework changes.
+
+It must explicitly separate fresh workspace commands from warmed workspace commands. `--no-restore` commands are valid only after restore has succeeded in the same workspace or the agent has evidence that dependencies are already restored.
 
 It must explicitly say that GUI smoke commands open DesktopGL windows and may require local desktop access or tool escalation.
 
@@ -402,6 +421,20 @@ Experiment: Add a mouse-drag input variant to e03
 If the user gives only a free-form request, the agent must classify it into one of the task types before doing implementation work. If classification is ambiguous, the agent states the assumed type and proceeds only when the assumption is low risk; otherwise it asks one concise question.
 
 If the user gives a terse continuation request, the agent must not guess from conversation mood alone. It must inspect the current repo state and the relevant roadmap/spec, then state what it is continuing before making changes.
+
+## Short Task To Plan Contract
+
+The framework must let the user issue short tasks without also writing a long agent brief.
+
+Contract:
+
+- Short tasks are accepted as task intake.
+- Agent docs supply the missing context: repo purpose, file map, boundaries, task types, planning gates, and verification commands.
+- For tasks that do not require a spec or plan, the agent classifies, states the scope, edits the allowed files, verifies, and reports evidence.
+- For tasks that require a spec or plan, the agent uses the short task to draft the missing spec or plan, then waits for user approval before runtime or broad documentation edits.
+- For `Experiment` and `Demo`, a short task never authorizes immediate runtime implementation.
+- For vague tasks such as `继续`, the agent must identify the active artifact from git state and the relevant spec or roadmap before changing files.
+- For subjective acceptance such as "feels better", the agent must stop and propose observable acceptance before implementation.
 
 ## Short Task Examples
 
@@ -457,6 +490,19 @@ Rules:
 - New validation scripts or build helpers are `Tooling`.
 - Study notes, comparison, evaluation, and planning are `Research`.
 - If classification changes the planning gate, use the stricter planning gate.
+
+## Experiment ID Rules
+
+Agents must not assign experiment IDs by guessing.
+
+Rules:
+
+- Existing implemented experiments are `e01` through `e07` and `e10`.
+- Original roadmap entries `e08` and `e09` refer to optional 3D and shader topics unless a new spec redefines them.
+- A new experiment requires an approved spec or plan that names the ID and directory.
+- If the request names a concept but not an ID, the agent must propose the ID in the spec or plan before creating files.
+- The agent must not skip to `e11` merely because `e08` and `e09` were not implemented.
+- The agent must not reuse an existing ID for a different concept.
 
 ## Task Types
 
@@ -587,6 +633,8 @@ Rules:
 
 - No new `docs/agents/` file unless this spec or a new spec names it.
 - Each `docs/agents/` file owns one responsibility from the final file skeleton.
+- Target maximum size: `AGENTS.md` 120 lines, `docs/agents/README.md` 80 lines, `task-types.md` 220 lines, `task-template.md` 160 lines, `development-protocol.md` 180 lines, `verification.md` 180 lines, and `boundaries.md` 140 lines.
+- If a target size is exceeded, the implementation must remove duplication or tighten wording before adding new files.
 - Do not duplicate the task-type matrix in multiple files.
 - Do not duplicate the verification matrix in multiple files.
 - `AGENTS.md` stays concise and links to detailed agent docs.
@@ -600,13 +648,16 @@ Shared health commands:
 
 ```bash
 ./tools/check-env.sh
-dotnet build GameDemo.sln --no-restore -m:1
+dotnet restore GameDemo.sln
+dotnet build GameDemo.sln -m:1
 ./tools/check-tutorial.sh
 git diff --check
 git status --short --untracked-files=all
 ```
 
 Agents should not always run the full tutorial dry-run for small docs edits, because it opens GUI smoke windows and publishes `e10`. The verification matrix in `docs/agents/verification.md` will define which subset is required for each task type.
+
+For warmed workspaces, `docs/agents/verification.md` may use `--no-restore` commands after documenting the restore precondition. For fresh workspaces, the first build path must include restore.
 
 ## Agent Usability Acceptance Tests
 
@@ -654,6 +705,16 @@ Demo: Add three new enemy types
 
 Expected agent behavior: stop before implementation because this expands the capstone demo beyond framework validation and the acceptance signal is not observable.
 
+The implementation plan must include a final intake-case verification table with these columns:
+
+- input,
+- expected task type,
+- required reads,
+- allowed file areas,
+- required verification,
+- expected stop or proceed decision,
+- pass or fail evidence.
+
 ## Stop Conditions
 
 An agent must stop and ask the user when:
@@ -699,9 +760,11 @@ The framework pass is complete when:
 - The short task format is documented with both `验收:` and `Acceptance:`.
 - `docs/agents/task-template.md` includes working examples for all six task types.
 - Gray-area task classification rules are documented.
+- Experiment ID assignment rules are documented.
 - The six task types are documented with required spec/plan behavior and verification.
-- Agent usability acceptance tests are represented in the docs with expected behavior.
+- Agent usability acceptance tests are represented in the docs and checked through a pass/fail intake table.
 - Document sprawl guardrails are represented in the docs.
+- Fresh workspace verification and warmed workspace verification are separated.
 - Human tutorial docs remain linked and unchanged in purpose.
 - Out-of-scope static-site prototype files are absent.
 - `git diff --check` exits 0.
