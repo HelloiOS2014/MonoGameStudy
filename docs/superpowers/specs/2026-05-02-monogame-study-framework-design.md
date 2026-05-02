@@ -35,9 +35,9 @@ Missing:
 - Explicit boundaries for what agents may and may not change.
 - A README that presents this repo as a dual-entry framework rather than only a research project or tutorial.
 
-Known cleanup:
+Known cleanup and correction:
 
-- `docs/tutorial-site/index.html` and `tools/build-tutorial-site.mjs` are uncommitted static-site prototype files from a wrong direction. They are out of scope for this framework pass and should be removed during implementation.
+- A static-site prototype was started in the wrong direction before this spec. This framework pass must not recreate `docs/tutorial-site/` or `tools/build-tutorial-site.mjs`.
 
 ## Non-Goals
 
@@ -83,6 +83,24 @@ docs/agents/
   verification.md
   boundaries.md
 ```
+
+## Documentation Language
+
+Repository documentation remains English by default because the existing tutorial, reports, and code comments are English.
+
+Agent task intake must support both:
+
+```text
+验收: <observable result>
+```
+
+and:
+
+```text
+Acceptance: <observable result>
+```
+
+The agent-facing docs should mention both forms so the user can issue short Chinese or English tasks without writing a long prompt.
 
 ## README Role
 
@@ -134,6 +152,111 @@ The protocol must make these decisions explicit:
 - avoid expanding the integrated demo into a larger game,
 - avoid introducing unrelated engines or toolchains.
 
+## Agent Document Responsibilities
+
+### `AGENTS.md`
+
+Root `AGENTS.md` is the required first-read file for agents.
+
+It must contain:
+
+- default role: development agent for a MonoGame study framework,
+- startup checklist,
+- short task format,
+- six task types,
+- hard boundaries,
+- verification rule: no completion claim without fresh evidence,
+- git rule: stage only files changed for the current task,
+- links to `docs/agents/`.
+
+It should be short enough for agents to read every session.
+
+### `docs/agents/README.md`
+
+This is the table of contents for detailed agent guidance.
+
+It must answer:
+
+- which file to read for task classification,
+- which file to read before implementation,
+- which file maps task types to verification commands,
+- which file defines boundaries.
+
+### `docs/agents/task-types.md`
+
+This file defines `Docs`, `Fix`, `Experiment`, `Demo`, `Tooling`, and `Research`.
+
+For each type it must include:
+
+- when to use it,
+- whether a spec is required,
+- whether an implementation plan is required,
+- allowed file areas,
+- required verification category,
+- one concrete example task.
+
+### `docs/agents/task-template.md`
+
+This file defines the short task format:
+
+```text
+<Type>: <goal>
+验收: <observable result, command, or output>
+```
+
+It must also document the English equivalent:
+
+```text
+<Type>: <goal>
+Acceptance: <observable result, command, or output>
+```
+
+It must include examples for all six task types so the user does not need to write long setup prompts.
+
+### `docs/agents/development-protocol.md`
+
+This file defines the work loop:
+
+1. read `AGENTS.md`,
+2. inspect `git status --short --untracked-files=all`,
+3. classify the task,
+4. read the task-type guidance,
+5. decide whether spec/plan is required,
+6. implement only the scoped change,
+7. run required verification,
+8. report evidence and remaining risk.
+
+It must also cover vague continuation prompts. If the user says only "continue", "go", "干", "继续", or similar, the agent must inspect current repo state and the relevant roadmap/spec before choosing the next action. The agent should state the assumed task type and milestone before making changes.
+
+### `docs/agents/verification.md`
+
+This file is the verification matrix.
+
+It must map each task type to exact commands, including:
+
+- `git diff --check`,
+- `bash -n tools/check-env.sh`,
+- `bash -n tools/check-tutorial.sh`,
+- `./tools/check-env.sh`,
+- `dotnet build GameDemo.sln --no-restore -m:1`,
+- targeted test projects,
+- GUI smoke commands,
+- `./tools/check-tutorial.sh` for broad tutorial/framework changes.
+
+It must explicitly say that GUI smoke commands open DesktopGL windows and may require local desktop access or tool escalation.
+
+### `docs/agents/boundaries.md`
+
+This file explains boundaries and their rationale.
+
+It must cover:
+
+- why `demo/integrated-demo` is not a production game,
+- why Godot is not part of this repo's future path,
+- when new experiments are allowed,
+- when new tools are allowed,
+- what to do if a task violates boundaries.
+
 ## Task Format
 
 Preferred user task format:
@@ -151,6 +274,8 @@ Experiment: Add a mouse-drag input variant to e03
 ```
 
 If the user gives only a free-form request, the agent must classify it into one of the task types before doing implementation work. If classification is ambiguous, the agent states the assumed type and proceeds only when the assumption is low risk; otherwise it asks one concise question.
+
+If the user gives a terse continuation request, the agent must not guess from conversation mood alone. It must inspect the current repo state and the relevant roadmap/spec, then state what it is continuing before making changes.
 
 ## Task Types
 
@@ -314,7 +439,7 @@ docs/agents/boundaries.md
 README.md
 ```
 
-It should remove the out-of-scope uncommitted files:
+The implementation must ensure these out-of-scope static-site files do not exist:
 
 ```text
 docs/tutorial-site/index.html
@@ -326,13 +451,20 @@ tools/build-tutorial-site.mjs
 The framework pass is complete when:
 
 - `README.md` clearly presents the repo as a MonoGame Study Framework with Human and Agent entry points.
+- `README.md` preserves links to the Phase 1 closeout, technical evaluation, human tutorial, and shared verification commands.
 - Root `AGENTS.md` exists and gives agents enough first-read instructions to start safely.
 - `docs/agents/` contains task types, task template, development protocol, verification matrix, and boundaries.
-- The short task format is documented.
+- The short task format is documented with both `验收:` and `Acceptance:`.
 - The six task types are documented with required spec/plan behavior and verification.
 - Human tutorial docs remain linked and unchanged in purpose.
-- Out-of-scope static-site prototype files are removed.
+- Out-of-scope static-site prototype files are absent.
 - `git diff --check` exits 0.
 - `bash -n tools/check-env.sh` exits 0.
 - `bash -n tools/check-tutorial.sh` exits 0.
 - `git status --short --untracked-files=all` shows only intended files before commit, and is clean after commit.
+
+## Spec Self-Review Notes
+
+This spec intentionally does not implement the agent docs. It defines the contract that the next implementation plan must satisfy.
+
+The highest-risk ambiguity is keeping human tutorial content and agent protocol content separate while sharing verification commands. The implementation plan must not merge these into one long document; root `README.md` routes audiences, `docs/tutorial/` teaches humans, and `docs/agents/` instructs agents.
