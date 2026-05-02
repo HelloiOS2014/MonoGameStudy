@@ -92,9 +92,15 @@ env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/I
 
 ## Tutorial
 
-Start here: [`docs/tutorial/00-intro.md`](docs/tutorial/00-intro.md).
+Start here: [`docs/tutorial/README.md`](docs/tutorial/README.md).
 
 The tutorial is Markdown-first. It walks through the existing MonoGame experiments and integrated demo without changing the code.
+
+To dry-run the full tutorial command path:
+
+```bash
+./tools/check-tutorial.sh
+```
 
 ## Roadmap
 
