@@ -39,6 +39,8 @@ dotnet new install MonoGame.Templates.CSharp
 
 Then rerun `./tools/check-env.sh`.
 
+If `dotnet new list mgdesktopgl` prints a template-cache permission warning but still lists `mgdesktopgl` and exits 0, the template is usable. Fix `~/.templateengine` permissions only if the warning becomes a blocking error.
+
 ### NuGet or network restore
 
 Commands with `--no-restore` assume packages are already restored. On a fresh machine, run the same `dotnet build` or `dotnet run` command once without `--no-restore`.
@@ -68,6 +70,8 @@ If a `SpriteFont` fails, inspect the `.spritefont` file and rerun the content bu
 ### macOS DesktopGL smoke quirks
 
 GUI smoke runs still open a DesktopGL window. If a smoke command hangs, prefer the env-var smoke path documented in each chapter and avoid synthetic keyboard events.
+
+macOS may also print native messages such as `TSM AdjustCapsLockLEDForKeyTransitionHandling`, `IMKCFRunLoopWakeUpReliable`, or `CSSM_ModuleLoad()`. Treat them as noise when the command exits 0 and the expected smoke lines appear.
 
 ### Publish layout confusion
 
