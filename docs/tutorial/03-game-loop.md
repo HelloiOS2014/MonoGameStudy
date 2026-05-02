@@ -1,5 +1,7 @@
 # Game Loop
 
+Previous: [First Window](02-first-window.md) | Next: [Rendering](04-rendering.md)
+
 ## Goal
 
 Understand fixed vs variable timestep in MonoGame and why the repo uses smoke variables to make a GUI loop testable.

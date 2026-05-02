@@ -1,5 +1,7 @@
 # Integrated Demo
 
+Previous: [Publishing](09-publishing.md) | Next: [Troubleshooting](appendix-troubleshooting.md)
+
 ## Goal
 
 Connect the previous concepts into the playable collector demo.

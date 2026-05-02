@@ -1,5 +1,7 @@
 # Audio
 
+Previous: [Content Pipeline](06-content-pipeline.md) | Next: [Camera, Collision, And Animation](08-camera-collision-animation.md)
+
 ## Goal
 
 Use `SoundEffect` for short sounds and `Song`/`MediaPlayer` for looping music.

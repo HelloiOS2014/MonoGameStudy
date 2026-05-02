@@ -1,5 +1,7 @@
 # First Window
 
+Previous: [Setup](01-setup.md) | Next: [Game Loop](03-game-loop.md)
+
 ## Goal
 
 Open the first MonoGame DesktopGL window and understand the shape of a template-based MonoGame project.

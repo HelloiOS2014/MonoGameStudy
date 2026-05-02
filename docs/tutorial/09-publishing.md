@@ -1,5 +1,7 @@
 # Publishing
 
+Previous: [Camera, Collision, And Animation](08-camera-collision-animation.md) | Next: [Integrated Demo](10-integrated-demo.md)
+
 ## Goal
 
 Publish a self-contained macOS DesktopGL build and verify that the executable does not depend on `dotnet` being on `PATH`.

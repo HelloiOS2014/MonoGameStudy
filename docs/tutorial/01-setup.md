@@ -1,5 +1,7 @@
 # Setup
 
+Previous: [Intro](00-intro.md) | Next: [First Window](02-first-window.md)
+
 ## Goal
 
 Prepare the machine for .NET 10 and MonoGame DesktopGL, then verify that this repo can create and run the same project shape used by the experiments.

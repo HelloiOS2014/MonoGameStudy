@@ -1,5 +1,7 @@
 # Content Pipeline
 
+Previous: [Input](05-input.md) | Next: [Audio](07-audio.md)
+
 ## Goal
 
 Load a PNG, `SpriteFont`, and WAV through MGCB, then understand the path rules that make content builds succeed or fail.

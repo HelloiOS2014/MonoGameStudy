@@ -1,5 +1,7 @@
 # Input
 
+Previous: [Rendering](04-rendering.md) | Next: [Content Pipeline](06-content-pipeline.md)
+
 ## Goal
 
 Poll keyboard, mouse, and optional gamepad state, then separate held input from input that was pressed this frame.

@@ -1,5 +1,7 @@
 # Intro
 
+Previous: [Tutorial Index](README.md) | Next: [Setup](01-setup.md)
+
 ## Goal
 
 This tutorial turns the existing research repo into a path from zero MonoGame knowledge to a tiny 2D collector demo. You will not build a new game from a blank folder. Instead, you will walk through the finished experiments, understand why each one exists, then run the integrated demo that combines the useful parts.

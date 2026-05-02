@@ -1,5 +1,7 @@
 # Rendering
 
+Previous: [Game Loop](03-game-loop.md) | Next: [Input](05-input.md)
+
 ## Goal
 
 Draw sprites in 2D and understand why `SpriteBatch` batching matters for performance.

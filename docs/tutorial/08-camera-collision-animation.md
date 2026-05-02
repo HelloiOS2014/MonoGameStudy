@@ -1,5 +1,7 @@
 # Camera, Collision, And Animation
 
+Previous: [Audio](07-audio.md) | Next: [Publishing](09-publishing.md)
+
 ## Goal
 
 Add camera transforms, collision checks, and simple animation state while keeping game logic separate from MonoGame drawing.

@@ -2,6 +2,12 @@
 
 This tutorial teaches the existing MonoGame research repo as a finished learning path. Start with setup, move through one concept per experiment, then finish with the integrated 2D collector demo.
 
+## How To Use This
+
+Read the chapters in order. Each chapter has the same shape: goal, command to run, key files, walkthrough, expected output, common problems, and checkpoint.
+
+Do not expand the demo while reading the tutorial. The point is to understand the finished baseline first, then decide whether the next milestone is editorial hardening, visual evidence, a static site, or a separate tiny game.
+
 ## Path
 
 | Order | Chapter | What It Proves |
@@ -28,6 +34,8 @@ Run the dry-run script from the repo root:
 ```
 
 The script opens short-lived MonoGame smoke windows, verifies the deliberate MGCB failure, publishes `e10`, and runs the published executable without `dotnet` on `PATH`.
+
+Use this script as the tutorial acceptance check. If it fails, fix the repo or tutorial before adding any new milestone work.
 
 ## Current Validation
 

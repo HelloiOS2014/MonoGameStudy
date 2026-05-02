@@ -1,5 +1,7 @@
 # Troubleshooting
 
+Previous: [Integrated Demo](10-integrated-demo.md) | Next: [Tutorial Index](README.md)
+
 ## Goal
 
 Diagnose common failures from this repo without guessing.
