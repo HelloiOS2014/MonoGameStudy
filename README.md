@@ -6,7 +6,11 @@ The full design lives in [`docs/superpowers/specs/2026-04-26-monogame-research-d
 
 ## Status
 
-Phase 1 is complete through the integrated demo and technical evaluation. Week 1 and Week 2 experiments are runnable, and the Week 3 demo lives in `demo/integrated-demo`.
+Phase 1 is complete through the integrated demo and technical evaluation. This repo is now a MonoGame learning and evaluation record, not an active game project.
+
+Closeout: [`docs/reports/phase1-closeout.md`](docs/reports/phase1-closeout.md)
+
+Recommended next step: run the separate Godot parity plan in [`docs/superpowers/plans/2026-05-02-godot-parity-demo.md`](docs/superpowers/plans/2026-05-02-godot-parity-demo.md).
 
 ## Target environment
 
@@ -79,6 +83,12 @@ dotnet run --project demo/integrated-demo/IntegratedDemo.csproj
 ```
 
 The evaluation report is in [`docs/reports/monogame-technical-evaluation.md`](docs/reports/monogame-technical-evaluation.md).
+
+Automated smoke:
+
+```bash
+env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/IntegratedDemo.csproj --no-restore
+```
 
 ## Roadmap
 
