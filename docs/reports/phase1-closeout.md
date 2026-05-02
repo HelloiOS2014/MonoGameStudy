@@ -6,7 +6,7 @@ Date: 2026-05-02
 
 Phase 1 is complete. This repository should remain a MonoGame learning and evaluation record, not grow into a larger game project.
 
-The useful next move is a separate Godot parity experiment that rebuilds the same tiny collector demo and compares development speed, tool friction, and packaging effort.
+No Godot follow-up is planned. The next move is either to stop here, or to start a separate, deliberately tiny MonoGame prototype with a stricter game scope than this research repo.
 
 ## Final State
 
@@ -21,13 +21,12 @@ Key local entry points:
 - Integrated demo: `demo/integrated-demo/IntegratedDemo.csproj`
 - Evaluation report: `docs/reports/monogame-technical-evaluation.md`
 - Roadmap checklist: `docs/00-roadmap.md`
-- Godot parity plan: `docs/superpowers/plans/2026-05-02-godot-parity-demo.md`
 
 ## Final Recommendation
 
 Use MonoGame again when the goal is to learn or own engine-shaped code: loop timing, rendering, input polling, content builds, audio routing, collision, animation, and publishing mechanics.
 
-Do not use MonoGame as the default path for quickly making finished games. For that, run the Godot parity experiment next and compare the same feature set against editor-first tooling.
+Do not expand this research demo into a larger game. If continuing with MonoGame, create a new repository for a one-screen arcade prototype with a fixed scope: one level, one core mechanic, no editor/tooling buildout, and a hard stop after the first playable version.
 
 ## Verification Commands
 

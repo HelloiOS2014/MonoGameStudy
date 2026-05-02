@@ -10,7 +10,7 @@ Phase 1 is complete through the integrated demo and technical evaluation. This r
 
 Closeout: [`docs/reports/phase1-closeout.md`](docs/reports/phase1-closeout.md)
 
-Recommended next step: run the separate Godot parity plan in [`docs/superpowers/plans/2026-05-02-godot-parity-demo.md`](docs/superpowers/plans/2026-05-02-godot-parity-demo.md).
+Recommended next step: keep this repository archived as the Phase 1 MonoGame research result. If continuing, start a separate, deliberately tiny MonoGame game prototype instead of expanding this research repo.
 
 ## Target environment
 
