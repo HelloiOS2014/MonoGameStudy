@@ -84,6 +84,118 @@ docs/agents/
   boundaries.md
 ```
 
+## Final File Skeleton
+
+The implementation plan must produce these file shapes, not only these filenames.
+
+### Root `README.md`
+
+Target sections:
+
+- `# MonoGame Study Framework`
+- `What This Is`
+- `Current Status`
+- `For Humans`
+- `For Agents`
+- `Shared Verification`
+- `Boundaries`
+- `Project Map`
+- `Phase 1 Record`
+
+`README.md` must be a router. It introduces the framework and sends each audience to the right file. It must not copy the full tutorial chapter list, task-type matrix, or verification matrix.
+
+### Root `AGENTS.md`
+
+Target sections:
+
+- `Default Role`
+- `First Actions`
+- `Short Task Format`
+- `Task Types`
+- `Required Reading`
+- `Verification Rule`
+- `Git Rules`
+- `Stop Conditions`
+
+`AGENTS.md` must fit the first-read role. It gives agents enough rules to begin safely, then links to `docs/agents/` for the detailed tables.
+
+### `docs/agents/README.md`
+
+Target sections:
+
+- `Start Here`
+- `Task Flow`
+- `Files`
+- `Fast Checks`
+
+This file is the directory map for agent docs. It must not restate the detailed contents of every child file.
+
+### `docs/agents/task-types.md`
+
+Target sections:
+
+- `Summary Table`
+- `Docs`
+- `Fix`
+- `Experiment`
+- `Demo`
+- `Tooling`
+- `Research`
+- `Gray Areas`
+
+Each task type section must include when to use it, required planning level, allowed file areas, required verification, and one example.
+
+### `docs/agents/task-template.md`
+
+Target sections:
+
+- `Minimal Format`
+- `Chinese Acceptance`
+- `English Acceptance`
+- `Examples`
+- `When Free-Form Input Is Allowed`
+
+This file carries the short prompt contract. It must let the user issue compact tasks without restating repo context.
+
+### `docs/agents/development-protocol.md`
+
+Target sections:
+
+- `Startup`
+- `Classification`
+- `Planning Gate`
+- `Implementation Loop`
+- `Vague Continuation Prompts`
+- `Reporting`
+- `Stopping`
+
+This file defines agent behavior, not human tutorial prose.
+
+### `docs/agents/verification.md`
+
+Target sections:
+
+- `Rule`
+- `Command Matrix`
+- `GUI Smoke Notes`
+- `Failure Handling`
+- `Evidence To Report`
+
+The command matrix must give exact commands by task type.
+
+### `docs/agents/boundaries.md`
+
+Target sections:
+
+- `Purpose`
+- `Allowed`
+- `Not Allowed`
+- `Requires A Spec`
+- `Rationale`
+- `Boundary Violation Response`
+
+This file explains the scope walls that keep the repo a study framework instead of a general game project.
+
 ## Documentation Language
 
 Repository documentation remains English by default because the existing tutorial, reports, and code comments are English.
@@ -116,6 +228,20 @@ It should answer:
 - What should not be expanded casually?
 
 The README should not duplicate all tutorial or agent protocol content. It should route readers to the correct entry point.
+
+## README Rewrite Strategy
+
+The rewrite must preserve the existing history while changing the front-door framing.
+
+Required strategy:
+
+- Reframe the repo as a framework built from completed Phase 1 MonoGame research.
+- Keep links to the Phase 1 closeout, technical evaluation, tutorial, validation log, and roadmap.
+- Put the Human path and Agent path near the top.
+- Keep shared verification commands visible without turning the README into a command manual.
+- Move detailed research narrative below the routing sections or link to the existing docs.
+- Do not delete project history to make the repo look newly created.
+- Do not present `demo/integrated-demo` as a production-ready game.
 
 ## Human-Facing Tutorial Role
 
@@ -277,6 +403,61 @@ If the user gives only a free-form request, the agent must classify it into one 
 
 If the user gives a terse continuation request, the agent must not guess from conversation mood alone. It must inspect the current repo state and the relevant roadmap/spec, then state what it is continuing before making changes.
 
+## Short Task Examples
+
+These examples must appear in `docs/agents/task-template.md` and be consistent with `docs/agents/task-types.md`.
+
+```text
+Docs: Tighten the setup tutorial wording for the MGCB restore step
+验收: The changed chapter names the exact command and git diff has no trailing whitespace.
+```
+
+```text
+Fix: Repair the e05 content smoke after an asset path rename
+验收: The failing smoke is reproduced first, then the targeted smoke and GameDemo.sln build pass.
+```
+
+```text
+Experiment: Add a mouse-drag input variant to e03
+验收: New smoke simulates a drag path and exits; GameDemo.sln builds with 0 errors.
+```
+
+```text
+Demo: Fix the restart prompt copy after win state
+Acceptance: Integrated demo tests pass and the smoke exits after the configured frame limit.
+```
+
+```text
+Tooling: Add link checks to tutorial verification
+验收: The script reports a broken internal tutorial link with a non-zero exit code.
+```
+
+```text
+Research: Evaluate whether an e08 shader experiment belongs in v2
+Acceptance: The report lists local evidence, tradeoffs, and a recommendation without runtime changes.
+```
+
+## Gray-Area Classification Rules
+
+When a request fits more than one task type, classify by the highest-risk affected area:
+
+```text
+Demo > Experiment > Tooling > Fix > Docs > Research
+```
+
+Rules:
+
+- Tutorial wording only is `Docs`.
+- Tutorial command text plus script behavior is `Tooling`.
+- Any new `experiments/eNN-*` directory is `Experiment`.
+- Any runtime change under `demo/integrated-demo` is `Demo`.
+- Docs-only changes under `demo/integrated-demo` are `Docs`.
+- A broken smoke caused by existing code is `Fix`.
+- New behavior added while fixing a smoke is `Experiment` or `Demo`, based on the affected area.
+- New validation scripts or build helpers are `Tooling`.
+- Study notes, comparison, evaluation, and planning are `Research`.
+- If classification changes the planning gate, use the stricter planning gate.
+
 ## Task Types
 
 The framework uses six task types.
@@ -398,6 +579,21 @@ Agents must preserve these boundaries:
 - No changing target platform away from macOS DesktopGL without a spec.
 - No changing `.NET 10` pinning without a spec.
 
+## Document Sprawl Guardrails
+
+The agent docs must be operational instructions, not essays.
+
+Rules:
+
+- No new `docs/agents/` file unless this spec or a new spec names it.
+- Each `docs/agents/` file owns one responsibility from the final file skeleton.
+- Do not duplicate the task-type matrix in multiple files.
+- Do not duplicate the verification matrix in multiple files.
+- `AGENTS.md` stays concise and links to detailed agent docs.
+- Every rule must map to a behavior, a stop condition, or a verification command.
+- Human tutorial chapters must not absorb agent protocol details.
+- Agent docs must not retell tutorial lessons except to link to the human tutorial.
+
 ## Verification Baseline
 
 Shared health commands:
@@ -411,6 +607,52 @@ git status --short --untracked-files=all
 ```
 
 Agents should not always run the full tutorial dry-run for small docs edits, because it opens GUI smoke windows and publishes `e10`. The verification matrix in `docs/agents/verification.md` will define which subset is required for each task type.
+
+## Agent Usability Acceptance Tests
+
+The implementation is acceptable only if the written agent docs support these task intake cases without extra user prompting.
+
+Case 1:
+
+```text
+Docs: Add a note about MGCB cache warnings
+验收: The relevant tutorial chapter mentions the warning and git diff has no trailing whitespace.
+```
+
+Expected agent behavior: classify as `Docs`, read `AGENTS.md` plus `docs/agents/task-types.md`, edit only docs, and run documentation-level verification.
+
+Case 2:
+
+```text
+e03 鼠标拖拽
+```
+
+Expected agent behavior: classify as `Experiment` unless the user narrows the request to docs or research, state the assumption, require a spec/plan before runtime implementation, and avoid editing demo code.
+
+Case 3:
+
+```text
+继续
+```
+
+Expected agent behavior: inspect git status and the relevant roadmap/spec, state the concrete task it is continuing, then proceed only if the assumption is low risk.
+
+Case 4:
+
+```text
+修一下 check-tutorial 里 e10 失败
+```
+
+Expected agent behavior: classify as `Fix` with `Tooling` risk, reproduce the failure when feasible, inspect `tools/check-tutorial.sh`, and run shell syntax plus the smallest command proving the fix.
+
+Case 5:
+
+```text
+Demo: Add three new enemy types
+验收: The demo feels more complete.
+```
+
+Expected agent behavior: stop before implementation because this expands the capstone demo beyond framework validation and the acceptance signal is not observable.
 
 ## Stop Conditions
 
@@ -455,7 +697,11 @@ The framework pass is complete when:
 - Root `AGENTS.md` exists and gives agents enough first-read instructions to start safely.
 - `docs/agents/` contains task types, task template, development protocol, verification matrix, and boundaries.
 - The short task format is documented with both `验收:` and `Acceptance:`.
+- `docs/agents/task-template.md` includes working examples for all six task types.
+- Gray-area task classification rules are documented.
 - The six task types are documented with required spec/plan behavior and verification.
+- Agent usability acceptance tests are represented in the docs with expected behavior.
+- Document sprawl guardrails are represented in the docs.
 - Human tutorial docs remain linked and unchanged in purpose.
 - Out-of-scope static-site prototype files are absent.
 - `git diff --check` exits 0.
