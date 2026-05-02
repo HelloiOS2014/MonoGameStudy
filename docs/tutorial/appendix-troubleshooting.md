@@ -23,6 +23,8 @@ git diff --check
 
 ## Walkthrough
 
+Use the symptom to choose the smallest diagnostic path below.
+
 ### SDK mismatch
 
 Run `dotnet --version` from the repo root. This repo expects .NET 10 selected through `global.json`. If another major version appears, install the .NET 10 SDK and rerun from the repo root.
