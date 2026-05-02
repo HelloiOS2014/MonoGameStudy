@@ -32,3 +32,7 @@ The script opens short-lived MonoGame smoke windows, verifies the deliberate MGC
 ## Current Validation
 
 Latest recorded validation: [validation-log.md](validation-log.md).
+
+## Planning Boundary
+
+Current completion state and allowed future milestones are defined in [ROADMAP.md](ROADMAP.md).

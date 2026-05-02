@@ -102,6 +102,8 @@ To dry-run the full tutorial command path:
 ./tools/check-tutorial.sh
 ```
 
+Planning boundary: [`docs/tutorial/ROADMAP.md`](docs/tutorial/ROADMAP.md).
+
 ## Roadmap
 
 | Week | Focus                          | Experiments                                                         |
