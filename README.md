@@ -90,6 +90,12 @@ Automated smoke:
 env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/IntegratedDemo.csproj --no-restore
 ```
 
+## Tutorial
+
+Start here: [`docs/tutorial/00-intro.md`](docs/tutorial/00-intro.md).
+
+The tutorial is Markdown-first. It walks through the existing MonoGame experiments and integrated demo without changing the code.
+
 ## Roadmap
 
 | Week | Focus                          | Experiments                                                         |
