@@ -10,6 +10,7 @@ The repo is not a production game, engine comparison platform, or general tutori
 
 - Improve human tutorial docs.
 - Improve agent docs.
+- Improve the manifest-driven tutorial site when it renders `course/manifest.json`.
 - Fix broken verification scripts.
 - Fix narrow build or smoke failures.
 - Update README routing.
@@ -19,7 +20,7 @@ The repo is not a production game, engine comparison platform, or general tutori
 ## Not Allowed
 
 - No Godot track.
-- No tutorial website in this pass.
+- No general-purpose tutorial website outside the manifest-driven `tutorial-site/`.
 - No casual expansion of `demo/integrated-demo`.
 - No new game features without spec.
 - No new MonoGame experiment without approved spec or plan.
@@ -47,6 +48,8 @@ Godot is outside this repository's future path. This repo records MonoGame resea
 New experiments are allowed only when a spec or plan names the experiment ID, directory, purpose, verification, and learning outcome.
 
 New tools are allowed only when they reduce repeated verification work and include failure behavior.
+
+The checked-in `tutorial-site/` is allowed because it renders the canonical course manifest. Site work that creates a separate source of truth, bypasses `course/manifest.json`, or turns the repository into a general tutorial website still violates this boundary.
 
 ## Boundary Violation Response
 
