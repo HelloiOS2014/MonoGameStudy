@@ -272,11 +272,30 @@ function validateSiteFiles() {
 function validateReadmeTruth() {
   const readmePath = resolve(root, 'README.md');
   const content = existsSync(readmePath) ? readFileSync(readmePath, 'utf8') : '';
-  if (
-    /Primary course entrypoint:\s*```bash\s*cd tutorial-site/ms.test(content) &&
-    !content.includes('current manifest-backed course slice')
-  ) {
-    fail('README routes humans to tutorial-site without stating that the site is only the current manifest-backed slice during migration');
+
+  if (!/Primary course entrypoint:\s*```bash\s*cd tutorial-site\s*npm install\s*npm run dev\s*```/ms.test(content)) {
+    fail('README must route humans to the tutorial-site primary course entrypoint');
+  }
+
+  if (!content.includes('complete 00-10 v1 course from `course/manifest.json`')) {
+    fail('README must state that the tutorial site renders the complete 00-10 v1 course from course/manifest.json');
+  }
+
+  if (!content.includes('Legacy migration source')) {
+    fail('README must keep docs/tutorial documented as legacy migration source');
+  }
+
+  const stalePhrases = [
+    'current manifest-backed course slice',
+    'not a complete 00-10',
+    'During migration',
+    'intended canonical',
+    'once the quality gate is implemented',
+  ];
+  for (const phrase of stalePhrases) {
+    if (content.includes(phrase)) {
+      fail(`README contains stale migration wording: ${phrase}`);
+    }
   }
 }
 
