@@ -2,11 +2,13 @@
 
 This file is the planning boundary for the tutorial. It prevents the project from drifting into "do one more thing" mode.
 
+Active dual-track v1 planning is governed by `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md`. This legacy Markdown roadmap records historical planning for `docs/tutorial/`; it does not override the v1 migration plan.
+
 ## Current State
 
 The legacy Markdown tutorial is complete. The dual-track v1 tutorial is not complete until the quality gate in `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md` passes.
 
-Completion means:
+Legacy Markdown completion means:
 
 - The tutorial has a navigable entry point: `docs/tutorial/README.md`.
 - Every chapter from `00-intro.md` through `10-integrated-demo.md` exists.
@@ -16,9 +18,9 @@ Completion means:
 - `./tools/check-tutorial.sh` has passed on the current macOS DesktopGL machine.
 - `origin/main` contains the tutorial commits.
 
-## Fixed Milestones
+## Legacy Historical Milestones
 
-Future work must fit one of these milestones. If it does not, write a new spec before touching files.
+These milestones describe the old Markdown tutorial path. They are superseded for active dual-track v1 migration, where `course/` is the intended canonical course source after the quality gate is implemented.
 
 ### v1.1 Editorial Hardening
 
@@ -67,9 +69,9 @@ Exit criteria:
 - image files are reasonably sized,
 - `./tools/check-tutorial.sh` still passes.
 
-### v1.3 Static Tutorial Site
+### v1.3 Static Tutorial Site (Legacy/Superseded)
 
-Purpose: publish the existing Markdown tutorial as a simple website.
+Purpose: historically, publish the existing Markdown tutorial as a simple website.
 
 Allowed:
 
@@ -84,9 +86,10 @@ Not allowed:
 - adding accounts, comments, analytics, or backend services,
 - changing the MonoGame demo as part of website work.
 
-Exit criteria:
+Historical exit criteria:
 
-- Markdown remains the source of truth,
+- the legacy Markdown tutorial remains readable as migration source,
+- active dual-track v1 source-of-truth decisions remain governed by the quality-gate spec,
 - site build is scripted,
 - local site build and `./tools/check-tutorial.sh` both pass.
 
@@ -117,7 +120,7 @@ Exit criteria:
 
 ## Stop Rules
 
-Do not continue by picking a random "next nice thing." Stop and write a spec when:
+Do not continue from this legacy roadmap by picking a random "next nice thing." Stop and write or follow the active quality-gate spec when:
 
 - the work does not fit v1.1, v1.2, v1.3, or v2,
 - the work changes MonoGame runtime behavior,
