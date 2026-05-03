@@ -14,6 +14,7 @@ Complete the MonoGame dual-track tutorial v1 with content quality and mainline a
 | 00-10 human lessons exist | `course/lessons/00-intro.mdx` through `course/lessons/10-integrated-demo.mdx` | Pass |
 | 00-10 agent packets exist | `course/agent-tasks/00-intro.md` through `course/agent-tasks/10-integrated-demo.md` | Pass |
 | Tutorial site renders all lessons | `npm run build` output lists `/` plus 11 lesson pages | Pass |
+| Tutorial site deploys by tag | `.github/workflows/pages.yml` builds `tutorial-site/` and deploys Pages on `v*` tags | Pass |
 | Verifier enforces canonical coverage | `tools/check-course.mjs`; `./tools/check-course.sh` output | Pass |
 | Runtime checks pass | `dotnet build GameDemo.sln -m:1`; `./tools/check-tutorial.sh` | Pass |
 | No Godot or game expansion | Diff inspection; manifest mappings remain MonoGame research/course scope | Pass |
@@ -28,6 +29,7 @@ Complete the MonoGame dual-track tutorial v1 with content quality and mainline a
 | `bash -n tools/check-course.sh` | 0 | Shell syntax accepted. |
 | `git diff --check` | 0 | No whitespace errors. |
 | `cd tutorial-site && npm run build` | 0 | Astro check reported 0 errors, 0 warnings, 0 hints; build emitted 12 pages. |
+| `GITHUB_ACTIONS=true GITHUB_REPOSITORY=HelloiOS2014/MonoGameStudy npm run build` | 0 | Simulated Pages base path build emitted 12 pages with `/MonoGameStudy/` links. |
 | `dotnet build GameDemo.sln -m:1` | 0 | 0 warnings, 0 errors. |
 | `./tools/check-tutorial.sh` | 0 | `Tutorial dry run passed.` |
 
@@ -50,7 +52,7 @@ No mainline alignment cap applies.
 | Visual expectation clarity | 15 | 15 | Expected Visual State sections and matching evidence files cover every lesson. |
 | Code mapping quality | 15 | 15 | Projects, tests, commands, and key files resolve through `check-course`. |
 | Agent task usefulness | 15 | 14 | Packets are lesson-scoped, narrow allowed files, and include verification/reporting. |
-| Site usability | 10 | 10 | Manifest-driven Astro site builds all 11 lesson routes plus index. |
+| Site usability | 10 | 10 | Manifest-driven Astro site builds all 11 lesson routes plus index and has tag-driven Pages deployment. |
 | Entry point honesty | 5 | 5 | README, AGENTS, legacy docs, and roadmap route users to current v1 sources. |
 | Total | 100 | 98 | Evidence-backed. |
 

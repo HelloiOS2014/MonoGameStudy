@@ -37,6 +37,17 @@ Legacy migration source:
 
 - [`docs/tutorial/README.md`](docs/tutorial/README.md)
 
+## Publish Tutorial Site
+
+GitHub Pages deployment is tag-driven:
+
+```bash
+git tag vYYYY.MM.DD
+git push origin vYYYY.MM.DD
+```
+
+The `Deploy Tutorial Site` workflow builds `tutorial-site/` with Astro and deploys `tutorial-site/dist` to GitHub Pages. The workflow also supports manual `workflow_dispatch`.
+
 ## For Agents
 
 Start here:
@@ -105,6 +116,7 @@ game_demo/
   global.json                .NET 10 SDK selection
   course/                    canonical manifest, lessons, agent task packets, and evidence
   tutorial-site/             Astro tutorial site generated from the course manifest
+  .github/workflows/         tag-driven GitHub Pages deployment
   tools/                     environment, course, and tutorial verification
   docs/tutorial/             legacy human learning path and migration source
   docs/agents/               general agent operating contract

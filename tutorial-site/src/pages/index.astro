@@ -3,6 +3,7 @@ import TutorialLayout from '../layouts/TutorialLayout.astro';
 import { loadCourse } from '../data/loadCourse';
 
 const course = loadCourse();
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <TutorialLayout title={course.title} lessons={course.lessons}>
@@ -20,7 +21,7 @@ const course = loadCourse();
     <ol>
       {course.lessons.map((lesson) => (
         <li>
-          <a href={`/${lesson.route}`}>{String(lesson.order).padStart(2, '0')} - {lesson.title}</a>
+          <a href={`${basePath}${lesson.route}`}>{String(lesson.order).padStart(2, '0')} - {lesson.title}</a>
           <p>{lesson.summary}</p>
         </li>
       ))}
