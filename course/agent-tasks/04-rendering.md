@@ -1,37 +1,37 @@
-# Agent Task: 03 Game Loop
+# Agent Task: 04 Rendering
 
 ## Task
 
-Maintain or improve the Game Loop lesson and expected state without changing experiment behavior.
+Maintain or improve the Rendering lesson and expected state without changing experiment behavior.
 
 ## Context
 
-This lesson maps to `docs/tutorial/03-game-loop.md`, `course/lessons/03-game-loop.mdx`, `experiments/e01-game-loop`, and `experiments/e01-game-loop.Tests`.
+This lesson maps to `docs/tutorial/04-rendering.md`, `course/lessons/04-rendering.mdx`, and `experiments/e02-2d-rendering`.
 
 ## Allowed Files
 
-- `course/lessons/03-game-loop.mdx`
-- `course/agent-tasks/03-game-loop.md`
-- `course/evidence/03-game-loop/expected-state.md`
+- `course/lessons/04-rendering.mdx`
+- `course/agent-tasks/04-rendering.md`
+- `course/evidence/04-rendering/expected-state.md`
 - `course/manifest.json` only when updating metadata for this lesson
 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
-- `experiments/e01-game-loop/**`
-- `experiments/e01-game-loop.Tests/**`
+- `experiments/e02-2d-rendering/**`
+- `experiments/e02-2d-rendering.Tests/**`
 - unrelated `course/lessons/**`
 - unrelated `course/agent-tasks/**`
 
 ## Spec Required
 
-Any change under `experiments/e01-game-loop/**` or `experiments/e01-game-loop.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any change under `experiments/e02-2d-rendering/**` or `experiments/e02-2d-rendering.Tests/**` requires an approved spec because it changes tutorial source behavior.
 
 ## Commands
 
 - `./tools/check-course.sh`
 - `dotnet build GameDemo.sln -m:1`
-- `dotnet run --project experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj`
+- `dotnet run --project experiments/e02-2d-rendering.Tests/E02Rendering.Tests.csproj`
 
 ## Acceptance
 

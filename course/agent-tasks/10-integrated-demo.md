@@ -1,42 +1,42 @@
-# Agent Task: 03 Game Loop
+# Agent Task: 10 Integrated Demo
 
 ## Task
 
-Maintain or improve the Game Loop lesson and expected state without changing experiment behavior.
+Maintain or improve the Integrated Demo lesson and expected state without changing capstone behavior.
 
 ## Context
 
-This lesson maps to `docs/tutorial/03-game-loop.md`, `course/lessons/03-game-loop.mdx`, `experiments/e01-game-loop`, and `experiments/e01-game-loop.Tests`.
+This lesson maps to `docs/tutorial/10-integrated-demo.md`, `course/lessons/10-integrated-demo.mdx`, and `demo/integrated-demo`.
 
 ## Allowed Files
 
-- `course/lessons/03-game-loop.mdx`
-- `course/agent-tasks/03-game-loop.md`
-- `course/evidence/03-game-loop/expected-state.md`
+- `course/lessons/10-integrated-demo.mdx`
+- `course/agent-tasks/10-integrated-demo.md`
+- `course/evidence/10-integrated-demo/expected-state.md`
 - `course/manifest.json` only when updating metadata for this lesson
 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
-- `experiments/e01-game-loop/**`
-- `experiments/e01-game-loop.Tests/**`
+- `demo/integrated-demo.Tests/**`
+- `experiments/**`
 - unrelated `course/lessons/**`
 - unrelated `course/agent-tasks/**`
 
 ## Spec Required
 
-Any change under `experiments/e01-game-loop/**` or `experiments/e01-game-loop.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any change under `demo/integrated-demo/**` or `demo/integrated-demo.Tests/**` requires an approved spec because the integrated demo is capstone evidence, not a product game expansion target.
 
 ## Commands
 
 - `./tools/check-course.sh`
 - `dotnet build GameDemo.sln -m:1`
-- `dotnet run --project experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj`
+- `dotnet run --project demo/integrated-demo.Tests/IntegratedDemo.Tests.csproj`
 
 ## Acceptance
 
 - Human lesson keeps every required section from the manifest.
-- Expected visual state matches the current experiment behavior.
+- Expected visual state matches the current integrated demo behavior.
 - Agent packet remains lesson-scoped and does not authorize runtime code changes.
 - Manifest paths and commands still resolve.
 - Verification commands are reported with results.

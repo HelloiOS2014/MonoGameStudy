@@ -1,0 +1,63 @@
+---
+id: 05-input
+title: Input
+---
+
+## Goal
+
+Poll keyboard, mouse, and optional gamepad state, then separate held input from input that was pressed this frame.
+
+## Run
+
+```bash
+env E03_SMOKE_EXIT_AFTER_FRAMES=120 dotnet run --project experiments/e03-input/E03Input.csproj --no-restore
+```
+
+## Observe
+
+The smoke run prints frame lines for each input source:
+
+```text
+Smoke: frame=40, position=..., input=axis.
+Smoke: frame=80, position=..., input=mouse.
+Smoke: frame=120, position=..., input=axis.
+Smoke: exit.
+```
+
+Manual mode opens a window with a green square. Use WASD/arrows to move, left-click to place, `Space` to log button edges, and `Escape` to exit.
+
+## Expected Visual State
+
+The expected visual state is a 960x540 DesktopGL window with a green square. Smoke mode moves the square through axis input, mouse placement, then axis input again while logging frames 40, 80, and 120.
+
+## Key Files
+
+- `experiments/e03-input/InputSnapshot.cs`
+- `experiments/e03-input/ButtonEdgeState.cs`
+- `experiments/e03-input/PlayerMotion.cs`
+- `experiments/e03-input/InputSmokeSettings.cs`
+- `experiments/e03-input.Tests/Program.cs`
+
+## Walkthrough
+
+MonoGame input is polled during `Update`. This experiment reads keyboard, mouse, and optional gamepad state, then converts those sources into an `InputSnapshot`.
+
+`PlayerMotion.Apply` moves the square from that snapshot. Keyboard and gamepad-style movement share the same axis path; mouse input directly places the square at a target. `ButtonEdgeState` compares previous and current button state so `PressedThisFrame` only fires on the first down frame while `Held` remains true as long as the button stays down.
+
+## Common Failures
+
+- No gamepad connected is acceptable; the smoke path simulates gamepad-style axis input.
+- `PressedThisFrame` should not stay true while a key is held. If it does, previous-frame state is not being stored correctly.
+- `--no-restore` assumes packages are present. Rerun without it once if restore has not happened.
+
+## Exercise
+
+Trace how `InputSnapshot` becomes a player position update.
+
+## Checkpoint
+
+You can distinguish `PressedThisFrame` from held input and explain why games usually need both.
+
+## Next
+
+Continue to `06-content-pipeline`.

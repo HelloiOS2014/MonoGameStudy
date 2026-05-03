@@ -4,17 +4,91 @@
   "tracks": ["human", "agent"],
   "lessons": [
     {
+      "id": "00-intro",
+      "order": 0,
+      "title": "Intro",
+      "summary": "Orient to the MonoGame study framework, the experiment set, and the integrated demo capstone.",
+      "kind": "orientation",
+      "migrationSource": "docs/tutorial/00-intro.md",
+      "route": "00-intro",
+      "human": {
+        "path": "course/lessons/00-intro.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/00-intro.md",
+        "allowedFiles": [
+          "course/lessons/00-intro.mdx",
+          "course/agent-tasks/00-intro.md",
+          "course/evidence/00-intro/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "demo/integrated-demo/**",
+          "demo/integrated-demo.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "demo/integrated-demo/IntegratedDemo.csproj"
+        ],
+        "tests": [
+          "demo/integrated-demo.Tests/IntegratedDemo.Tests.csproj"
+        ],
+        "keyFiles": [
+          "README.md",
+          "docs/00-roadmap.md",
+          "docs/reports/monogame-technical-evaluation.md",
+          "demo/integrated-demo/README.md"
+        ]
+      },
+      "commands": {
+        "run": [
+          "dotnet run --project demo/integrated-demo/IntegratedDemo.csproj"
+        ],
+        "verify": [
+          "env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/IntegratedDemo.csproj --no-restore"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/00-intro/expected-state.md"
+        ]
+      }
+    },
+    {
       "id": "01-setup",
       "order": 1,
       "title": "Setup",
       "summary": "Prepare the macOS DesktopGL and .NET toolchain used by the tutorial.",
       "kind": "setup",
+      "migrationSource": "docs/tutorial/01-setup.md",
+      "route": "01-setup",
       "human": {
         "path": "course/lessons/01-setup.mdx",
         "requiredSections": [
           "Goal",
           "Run",
           "Observe",
+          "Expected Visual State",
           "Key Files",
           "Walkthrough",
           "Common Failures",
@@ -28,11 +102,13 @@
         "allowedFiles": [
           "course/lessons/01-setup.mdx",
           "course/agent-tasks/01-setup.md",
+          "course/evidence/01-setup/expected-state.md",
           "course/manifest.json"
         ],
         "blockedFiles": [
           "demo/integrated-demo/**",
-          "experiments/**"
+          "experiments/**",
+          "unrelated course lessons/tasks"
         ],
         "specRequiredFiles": [
           "tools/check-env.sh",
@@ -57,9 +133,83 @@
         ]
       },
       "evidence": {
-        "status": "notApplicable",
-        "reason": "Setup lesson evidence is command output rather than a screenshot.",
-        "expectedPaths": []
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/01-setup/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "02-first-window",
+      "order": 2,
+      "title": "First Window",
+      "summary": "Open the first MonoGame DesktopGL window and identify the template project shape.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/02-first-window.md",
+      "route": "02-first-window",
+      "human": {
+        "path": "course/lessons/02-first-window.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/02-first-window.md",
+        "allowedFiles": [
+          "course/lessons/02-first-window.mdx",
+          "course/agent-tasks/02-first-window.md",
+          "course/evidence/02-first-window/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e01-game-loop/**",
+          "experiments/e01-game-loop.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e01-game-loop/**",
+          "experiments/e01-game-loop.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e01-game-loop/E01GameLoop.csproj"
+        ],
+        "tests": [
+          "experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e01-game-loop/Program.cs",
+          "experiments/e01-game-loop/Game1.cs",
+          "experiments/e01-game-loop/E01GameLoop.csproj",
+          "experiments/e01-game-loop/README.md"
+        ]
+      },
+      "commands": {
+        "run": [
+          "dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj"
+        ],
+        "verify": [
+          "dotnet run --project experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/02-first-window/expected-state.md"
+        ]
       }
     },
     {
@@ -68,12 +218,15 @@
       "title": "Game Loop",
       "summary": "Understand MonoGame Update and Draw cadence through the e01 experiment.",
       "kind": "experiment",
+      "migrationSource": "docs/tutorial/03-game-loop.md",
+      "route": "03-game-loop",
       "human": {
         "path": "course/lessons/03-game-loop.mdx",
         "requiredSections": [
           "Goal",
           "Run",
           "Observe",
+          "Expected Visual State",
           "Key Files",
           "Walkthrough",
           "Common Failures",
@@ -87,12 +240,14 @@
         "allowedFiles": [
           "course/lessons/03-game-loop.mdx",
           "course/agent-tasks/03-game-loop.md",
+          "course/evidence/03-game-loop/expected-state.md",
           "course/manifest.json"
         ],
         "blockedFiles": [
           "demo/integrated-demo/**",
-          "course/lessons/01-setup.mdx",
-          "course/agent-tasks/01-setup.md"
+          "experiments/e01-game-loop/**",
+          "experiments/e01-game-loop.Tests/**",
+          "unrelated course lessons/tasks"
         ],
         "specRequiredFiles": [
           "experiments/e01-game-loop/**",
@@ -109,12 +264,13 @@
         "keyFiles": [
           "experiments/e01-game-loop/Game1.cs",
           "experiments/e01-game-loop/GameLoopState.cs",
+          "experiments/e01-game-loop/LoopSmokeSettings.cs",
           "experiments/e01-game-loop.Tests/Program.cs"
         ]
       },
       "commands": {
         "run": [
-          "dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj"
+          "env E01_SMOKE_TOGGLE_AFTER_FRAMES=30 E01_SMOKE_EXIT_AFTER_FRAMES=90 dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj --no-restore"
         ],
         "verify": [
           "dotnet build GameDemo.sln -m:1",
@@ -122,10 +278,535 @@
         ]
       },
       "evidence": {
-        "status": "pending",
-        "reason": "First implementation creates structure before screenshot capture is automated.",
+        "status": "available",
+        "reason": "",
         "expectedPaths": [
-          "course/evidence/03-game-loop/expected-overlay.png"
+          "course/evidence/03-game-loop/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "04-rendering",
+      "order": 4,
+      "title": "Rendering",
+      "summary": "Draw sprites in 2D and understand why SpriteBatch batching matters.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/04-rendering.md",
+      "route": "04-rendering",
+      "human": {
+        "path": "course/lessons/04-rendering.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/04-rendering.md",
+        "allowedFiles": [
+          "course/lessons/04-rendering.mdx",
+          "course/agent-tasks/04-rendering.md",
+          "course/evidence/04-rendering/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e02-2d-rendering/**",
+          "experiments/e02-2d-rendering.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e02-2d-rendering/**",
+          "experiments/e02-2d-rendering.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e02-2d-rendering/E02Rendering.csproj"
+        ],
+        "tests": [
+          "experiments/e02-2d-rendering.Tests/E02Rendering.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e02-2d-rendering/Game1.cs",
+          "experiments/e02-2d-rendering/SpriteField.cs",
+          "experiments/e02-2d-rendering/RenderModeState.cs",
+          "experiments/e02-2d-rendering/Content/Status.spritefont"
+        ]
+      },
+      "commands": {
+        "run": [
+          "env E02_SMOKE_TOGGLE_AFTER_FRAMES=180 E02_SMOKE_EXIT_AFTER_FRAMES=340 dotnet run --project experiments/e02-2d-rendering/E02Rendering.csproj --no-restore"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e02-2d-rendering.Tests/E02Rendering.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/04-rendering/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "05-input",
+      "order": 5,
+      "title": "Input",
+      "summary": "Poll keyboard, mouse, and optional gamepad state while separating held input from edge input.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/05-input.md",
+      "route": "05-input",
+      "human": {
+        "path": "course/lessons/05-input.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/05-input.md",
+        "allowedFiles": [
+          "course/lessons/05-input.mdx",
+          "course/agent-tasks/05-input.md",
+          "course/evidence/05-input/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e03-input/**",
+          "experiments/e03-input.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e03-input/**",
+          "experiments/e03-input.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e03-input/E03Input.csproj"
+        ],
+        "tests": [
+          "experiments/e03-input.Tests/E03Input.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e03-input/InputSnapshot.cs",
+          "experiments/e03-input/ButtonEdgeState.cs",
+          "experiments/e03-input/PlayerMotion.cs",
+          "experiments/e03-input/InputSmokeSettings.cs",
+          "experiments/e03-input.Tests/Program.cs"
+        ]
+      },
+      "commands": {
+        "run": [
+          "env E03_SMOKE_EXIT_AFTER_FRAMES=120 dotnet run --project experiments/e03-input/E03Input.csproj --no-restore"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e03-input.Tests/E03Input.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/05-input/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "06-content-pipeline",
+      "order": 6,
+      "title": "Content Pipeline",
+      "summary": "Load texture, font, and sound assets through MGCB and understand logical asset names.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/06-content-pipeline.md",
+      "route": "06-content-pipeline",
+      "human": {
+        "path": "course/lessons/06-content-pipeline.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/06-content-pipeline.md",
+        "allowedFiles": [
+          "course/lessons/06-content-pipeline.mdx",
+          "course/agent-tasks/06-content-pipeline.md",
+          "course/evidence/06-content-pipeline/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e05-content-pipeline/**",
+          "experiments/e05-content-pipeline.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e05-content-pipeline/**",
+          "experiments/e05-content-pipeline.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e05-content-pipeline/E05ContentPipeline.csproj"
+        ],
+        "tests": [
+          "experiments/e05-content-pipeline.Tests/E05ContentPipeline.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e05-content-pipeline/Content/Content.mgcb",
+          "experiments/e05-content-pipeline/ContentAssets.cs",
+          "experiments/e05-content-pipeline/docs/broken-content.mgcb",
+          "docs/03-content-pipeline.md"
+        ]
+      },
+      "commands": {
+        "run": [
+          "env E05_SMOKE_EXIT_AFTER_FRAMES=90 dotnet run --project experiments/e05-content-pipeline/E05ContentPipeline.csproj --no-restore",
+          "cd experiments/e05-content-pipeline && dotnet mgcb /quiet /@:docs/broken-content.mgcb"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e05-content-pipeline.Tests/E05ContentPipeline.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/06-content-pipeline/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "07-audio",
+      "order": 7,
+      "title": "Audio",
+      "summary": "Use SoundEffect for short sounds and Song with MediaPlayer for looping music.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/07-audio.md",
+      "route": "07-audio",
+      "human": {
+        "path": "course/lessons/07-audio.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/07-audio.md",
+        "allowedFiles": [
+          "course/lessons/07-audio.mdx",
+          "course/agent-tasks/07-audio.md",
+          "course/evidence/07-audio/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e04-audio/**",
+          "experiments/e04-audio.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e04-audio/**",
+          "experiments/e04-audio.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e04-audio/E04Audio.csproj"
+        ],
+        "tests": [
+          "experiments/e04-audio.Tests/E04Audio.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e04-audio/Game1.cs",
+          "experiments/e04-audio/AudioControlState.cs",
+          "experiments/e04-audio/Content/Content.mgcb",
+          "experiments/e04-audio.Tests/Program.cs"
+        ]
+      },
+      "commands": {
+        "run": [
+          "env E04_SMOKE_EXIT_AFTER_FRAMES=150 dotnet run --project experiments/e04-audio/E04Audio.csproj --no-restore"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e04-audio.Tests/E04Audio.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/07-audio/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "08-camera-collision-animation",
+      "order": 8,
+      "title": "Camera, Collision, And Animation",
+      "summary": "Add camera transforms, collision checks, and simple animation state in focused experiments.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/08-camera-collision-animation.md",
+      "route": "08-camera-collision-animation",
+      "human": {
+        "path": "course/lessons/08-camera-collision-animation.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/08-camera-collision-animation.md",
+        "allowedFiles": [
+          "course/lessons/08-camera-collision-animation.mdx",
+          "course/agent-tasks/08-camera-collision-animation.md",
+          "course/evidence/08-camera-collision-animation/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e06-camera-and-collision/**",
+          "experiments/e06-camera-and-collision.Tests/**",
+          "experiments/e07-animation/**",
+          "experiments/e07-animation.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e06-camera-and-collision/**",
+          "experiments/e06-camera-and-collision.Tests/**",
+          "experiments/e07-animation/**",
+          "experiments/e07-animation.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e06-camera-and-collision/E06CameraAndCollision.csproj",
+          "experiments/e07-animation/E07Animation.csproj"
+        ],
+        "tests": [
+          "experiments/e06-camera-and-collision.Tests/E06CameraAndCollision.Tests.csproj",
+          "experiments/e07-animation.Tests/E07Animation.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e06-camera-and-collision/Camera2D.cs",
+          "experiments/e06-camera-and-collision/Collision2D.cs",
+          "experiments/e06-camera-and-collision/CollisionScene.cs",
+          "experiments/e07-animation/FrameAnimation.cs",
+          "experiments/e07-animation/CharacterStateMachine.cs",
+          "experiments/e07-animation/AnimationController.cs"
+        ]
+      },
+      "commands": {
+        "run": [
+          "env E06_SMOKE_EXIT_AFTER_FRAMES=180 dotnet run --project experiments/e06-camera-and-collision/E06CameraAndCollision.csproj --no-restore",
+          "env E07_SMOKE_EXIT_AFTER_FRAMES=170 dotnet run --project experiments/e07-animation/E07Animation.csproj --no-restore"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e06-camera-and-collision.Tests/E06CameraAndCollision.Tests.csproj",
+          "dotnet run --project experiments/e07-animation.Tests/E07Animation.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/08-camera-collision-animation/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "09-publishing",
+      "order": 9,
+      "title": "Publishing",
+      "summary": "Publish a self-contained macOS DesktopGL build and verify the executable without the SDK on PATH.",
+      "kind": "experiment",
+      "migrationSource": "docs/tutorial/09-publishing.md",
+      "route": "09-publishing",
+      "human": {
+        "path": "course/lessons/09-publishing.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/09-publishing.md",
+        "allowedFiles": [
+          "course/lessons/09-publishing.mdx",
+          "course/agent-tasks/09-publishing.md",
+          "course/evidence/09-publishing/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/e10-publishing/**",
+          "experiments/e10-publishing.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "experiments/e10-publishing/**",
+          "experiments/e10-publishing.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e10-publishing/E10Publishing.csproj"
+        ],
+        "tests": [
+          "experiments/e10-publishing.Tests/E10Publishing.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e10-publishing/E10Publishing.csproj",
+          "experiments/e10-publishing/README.md",
+          "docs/04-platforms-and-publishing.md"
+        ]
+      },
+      "commands": {
+        "run": [
+          "dotnet publish experiments/e10-publishing/E10Publishing.csproj -c Release -r osx-x64 --self-contained true -p:PublishReadyToRun=false",
+          "env -i HOME=\"$HOME\" E10_SMOKE_EXIT_AFTER_FRAMES=60 PATH=\"/usr/bin:/bin\" experiments/e10-publishing/bin/Release/net10.0/osx-x64/publish/E10Publishing"
+        ],
+        "verify": [
+          "dotnet run --project experiments/e10-publishing.Tests/E10Publishing.Tests.csproj",
+          "dotnet publish experiments/e10-publishing/E10Publishing.csproj -c Release -r osx-x64 --self-contained true -p:PublishReadyToRun=false"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/09-publishing/expected-state.md"
+        ]
+      }
+    },
+    {
+      "id": "10-integrated-demo",
+      "order": 10,
+      "title": "Integrated Demo",
+      "summary": "Connect the previous concepts into the playable collector demo capstone.",
+      "kind": "capstone",
+      "migrationSource": "docs/tutorial/10-integrated-demo.md",
+      "route": "10-integrated-demo",
+      "human": {
+        "path": "course/lessons/10-integrated-demo.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Expected Visual State",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/10-integrated-demo.md",
+        "allowedFiles": [
+          "course/lessons/10-integrated-demo.mdx",
+          "course/agent-tasks/10-integrated-demo.md",
+          "course/evidence/10-integrated-demo/expected-state.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "experiments/**",
+          "demo/integrated-demo/**",
+          "demo/integrated-demo.Tests/**",
+          "unrelated course lessons/tasks"
+        ],
+        "specRequiredFiles": [
+          "demo/integrated-demo/**",
+          "demo/integrated-demo.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "demo/integrated-demo/IntegratedDemo.csproj"
+        ],
+        "tests": [
+          "demo/integrated-demo.Tests/IntegratedDemo.Tests.csproj"
+        ],
+        "keyFiles": [
+          "demo/integrated-demo/DemoState.cs",
+          "demo/integrated-demo/DemoTypes.cs",
+          "demo/integrated-demo/Game1.cs",
+          "demo/integrated-demo/Content/Content.mgcb",
+          "demo/integrated-demo.Tests/Program.cs"
+        ]
+      },
+      "commands": {
+        "run": [
+          "dotnet run --project demo/integrated-demo/IntegratedDemo.csproj",
+          "env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/IntegratedDemo.csproj --no-restore"
+        ],
+        "verify": [
+          "dotnet run --project demo/integrated-demo.Tests/IntegratedDemo.Tests.csproj",
+          "dotnet build GameDemo.sln -m:1"
+        ]
+      },
+      "evidence": {
+        "status": "available",
+        "reason": "",
+        "expectedPaths": [
+          "course/evidence/10-integrated-demo/expected-state.md"
         ]
       }
     }

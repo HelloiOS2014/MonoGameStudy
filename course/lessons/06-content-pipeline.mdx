@@ -1,0 +1,71 @@
+---
+id: 06-content-pipeline
+title: Content Pipeline
+---
+
+## Goal
+
+Load a PNG, `SpriteFont`, and WAV through MGCB, then understand the path rules that make content builds succeed or fail.
+
+## Run
+
+Run the working content experiment:
+
+```bash
+env E05_SMOKE_EXIT_AFTER_FRAMES=90 dotnet run --project experiments/e05-content-pipeline/E05ContentPipeline.csproj --no-restore
+```
+
+Run the deliberate failure from the experiment root:
+
+```bash
+cd experiments/e05-content-pipeline
+dotnet mgcb /quiet /@:docs/broken-content.mgcb
+```
+
+## Observe
+
+The working smoke run includes:
+
+```text
+LoadContent: texture=Images/pipeline_tile 64x64; font=PipelineStatus; sound=Audio/beep duration=250ms.
+Smoke: played Content-loaded sound.
+Smoke: exit.
+```
+
+The broken MGCB command should fail with a missing source file error that mentions `docs/Images/missing_texture.png`.
+
+## Expected Visual State
+
+The expected visual state is a DesktopGL window showing content-loaded texture/font/sound state. The deliberate MGCB command is expected to fail because it references a missing texture path.
+
+## Key Files
+
+- `experiments/e05-content-pipeline/Content/Content.mgcb`
+- `experiments/e05-content-pipeline/ContentAssets.cs`
+- `experiments/e05-content-pipeline/docs/broken-content.mgcb`
+- `docs/03-content-pipeline.md`
+
+## Walkthrough
+
+MGCB compiles source assets into runtime `.xnb` files. Game code loads compiled files through `Content.Load<T>` using logical names, not source filenames. This experiment loads `Images/pipeline_tile`, `PipelineStatus`, and `Audio/beep` from constants in `ContentAssets.cs`.
+
+`Content.RootDirectory = "Content"` tells MonoGame where to look for compiled content. The broken MGCB file is intentional; it references `Images/missing_texture.png` from the wrong location. The project sets `EnableMGCBItems=false` so MonoGame build targets do not glob and build the deliberate failure file during normal project builds.
+
+## Common Failures
+
+- Relative paths are resolved from the `.mgcb` file's directory, not always from your shell's current directory.
+- Filename casing matters, especially across different filesystems.
+- MGCB globbing can accidentally include docs or failure examples; use explicit includes when needed.
+- Missing `.xnb` files usually mean the content build failed or the logical name passed to `Content.Load<T>` is wrong.
+
+## Exercise
+
+Predict the logical asset name for one texture, one font, and one sound.
+
+## Checkpoint
+
+You can predict the logical name used by `Content.Load<Texture2D>("Images/pipeline_tile")`.
+
+## Next
+
+Continue to `07-audio`.

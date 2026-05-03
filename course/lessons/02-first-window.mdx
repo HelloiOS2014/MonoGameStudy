@@ -1,0 +1,60 @@
+---
+id: 02-first-window
+title: First Window
+---
+
+## Goal
+
+Open the first MonoGame DesktopGL window and understand the shape of a template-based MonoGame project.
+
+## Run
+
+```bash
+dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj
+```
+
+## Observe
+
+A 960x540 window opens with a blue background and this title:
+
+```text
+E01 Game Loop - Fixed 60 Hz
+```
+
+Stdout starts with initialization information and then prints frame information from `Draw` about once per second.
+
+## Expected Visual State
+
+The expected visual state is a 960x540 CornflowerBlue DesktopGL window titled `E01 Game Loop - Fixed 60 Hz`. There is no loaded content in this first window lesson.
+
+## Key Files
+
+- `experiments/e01-game-loop/Program.cs`
+- `experiments/e01-game-loop/Game1.cs`
+- `experiments/e01-game-loop/E01GameLoop.csproj`
+- `experiments/e01-game-loop/README.md`
+
+## Walkthrough
+
+`Program.cs` creates `Game1` and calls `Game.Run()`. After that call, MonoGame owns the outer loop.
+
+`Game1` inherits `Microsoft.Xna.Framework.Game`. MonoGame calls `Initialize` for startup state, `LoadContent` after the graphics device exists, `Update` for simulation and input, and `Draw` for rendering. This first experiment clears the window to `CornflowerBlue` and logs that no content is loaded yet.
+
+## Common Failures
+
+- The first run may restore NuGet packages and project-local tools before the window appears.
+- A normal run opens a GUI window and needs local desktop access.
+- Press `Escape` to exit the window.
+- If the command fails before launching, run `./tools/check-env.sh` from the repo root.
+
+## Exercise
+
+Find the call to `Game.Run()` and list the lifecycle methods MonoGame calls in `Game1`.
+
+## Checkpoint
+
+You can name what `Initialize`, `LoadContent`, `Update`, and `Draw` each own.
+
+## Next
+
+Continue to `03-game-loop`.

@@ -1,0 +1,58 @@
+---
+id: 04-rendering
+title: Rendering
+---
+
+## Goal
+
+Draw sprites in 2D and understand why `SpriteBatch` batching matters for performance.
+
+## Run
+
+```bash
+env E02_SMOKE_TOGGLE_AFTER_FRAMES=180 E02_SMOKE_EXIT_AFTER_FRAMES=340 dotnet run --project experiments/e02-2d-rendering/E02Rendering.csproj --no-restore
+```
+
+## Observe
+
+The window shows 1000 sprites and overlay text. The smoke run starts in `mode=Batched`, then logs:
+
+```text
+Update: render mode changed to Unbatched.
+Smoke: exit.
+```
+
+## Expected Visual State
+
+The expected visual state is a 960x540 DesktopGL window with 1000 sprites and overlay text showing mode, sprite count, FPS, and frame time. Smoke mode toggles from batched drawing to intentionally unbatched drawing.
+
+## Key Files
+
+- `experiments/e02-2d-rendering/Game1.cs`
+- `experiments/e02-2d-rendering/SpriteField.cs`
+- `experiments/e02-2d-rendering/RenderModeState.cs`
+- `experiments/e02-2d-rendering/Content/Status.spritefont`
+
+## Walkthrough
+
+MonoGame's common 2D drawing path is `SpriteBatch`: call `Begin`, queue texture and text draws, then call `End` to flush work to the GPU.
+
+The experiment draws 1000 sprites in two modes. `Batched` wraps all sprite draws in one `Begin`/`End` pair. `Unbatched` intentionally uses one pair per sprite to make broken batching visible. The overlay uses `SpriteBatch.DrawString` and a loaded `SpriteFont` to print teaching signals, not benchmark-grade numbers.
+
+## Common Failures
+
+- Missing `Status.spritefont` or built content usually means restore/build did not finish cleanly.
+- `Content.Load<SpriteFont>("Status")` uses the logical asset name, not the file extension.
+- Very early FPS samples can include startup/content-load cost and should not be treated as stable measurements.
+
+## Exercise
+
+Compare the batched and unbatched draw paths in `Game1.cs`.
+
+## Checkpoint
+
+You can explain why grouping draw calls inside fewer `SpriteBatch.Begin`/`End` pairs matters.
+
+## Next
+
+Continue to `05-input`.

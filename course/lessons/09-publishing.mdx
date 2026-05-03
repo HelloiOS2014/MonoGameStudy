@@ -1,0 +1,61 @@
+---
+id: 09-publishing
+title: Publishing
+---
+
+## Goal
+
+Publish a self-contained macOS DesktopGL build and verify that the executable does not depend on `dotnet` being on `PATH`.
+
+## Run
+
+```bash
+dotnet publish experiments/e10-publishing/E10Publishing.csproj -c Release -r osx-x64 --self-contained true -p:PublishReadyToRun=false
+env -i HOME="$HOME" E10_SMOKE_EXIT_AFTER_FRAMES=60 PATH="/usr/bin:/bin" experiments/e10-publishing/bin/Release/net10.0/osx-x64/publish/E10Publishing
+```
+
+## Observe
+
+The published smoke should print:
+
+```text
+Smoke: rendered 30 update frames.
+Smoke: exit.
+```
+
+The publish output directory is `experiments/e10-publishing/bin/Release/net10.0/osx-x64/publish/`.
+
+## Expected Visual State
+
+No learning window is required before the published smoke. The published executable is expected to log rendered frames and exit while running without `dotnet` on `PATH`.
+
+## Key Files
+
+- `experiments/e10-publishing/E10Publishing.csproj`
+- `experiments/e10-publishing/README.md`
+- `docs/04-platforms-and-publishing.md`
+
+## Walkthrough
+
+The publish command chooses the `osx-x64` runtime identifier and uses `--self-contained true`, so the output includes runtime files needed by the app. `PublishReadyToRun=false` keeps this first publishing pass simpler.
+
+The smoke command uses a minimal `PATH` with `/usr/bin:/bin`. That proves the published executable can start without finding `dotnet` from the SDK. The output is still a publish directory, not a signed `.app` bundle, installer, or notarized macOS release.
+
+## Common Failures
+
+- The publish directory is large because self-contained output includes runtime files.
+- Native dependency files are expected for DesktopGL.
+- Signing, notarization, installer creation, and a polished `.app` bundle are out of scope for this tutorial.
+- Publishing for `osx-arm64` is a separate validation step; this repo's Phase 1 publish check used `osx-x64`.
+
+## Exercise
+
+Locate the published executable path and explain why the smoke command strips `PATH`.
+
+## Checkpoint
+
+You can find the published executable and run it without `dotnet` on `PATH`.
+
+## Next
+
+Continue to `10-integrated-demo`.

@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 
 const root = process.cwd();
 const manifestPath = resolve(root, 'course/manifest.json');
+const schemaPath = resolve(root, 'course/schema.json');
 
 const requiredAgentSections = [
   'Task',
@@ -15,6 +16,110 @@ const requiredAgentSections = [
   'Acceptance',
   'Failure Handling',
   'Report Format',
+];
+
+const requiredHumanSections = [
+  'Goal',
+  'Run',
+  'Observe',
+  'Expected Visual State',
+  'Key Files',
+  'Walkthrough',
+  'Common Failures',
+  'Exercise',
+  'Checkpoint',
+  'Next',
+];
+
+const canonicalLessons = [
+  {
+    order: 0,
+    id: '00-intro',
+    title: 'Intro',
+    kind: 'orientation',
+    migrationSource: 'docs/tutorial/00-intro.md',
+    route: '00-intro',
+  },
+  {
+    order: 1,
+    id: '01-setup',
+    title: 'Setup',
+    kind: 'setup',
+    migrationSource: 'docs/tutorial/01-setup.md',
+    route: '01-setup',
+  },
+  {
+    order: 2,
+    id: '02-first-window',
+    title: 'First Window',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/02-first-window.md',
+    route: '02-first-window',
+  },
+  {
+    order: 3,
+    id: '03-game-loop',
+    title: 'Game Loop',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/03-game-loop.md',
+    route: '03-game-loop',
+  },
+  {
+    order: 4,
+    id: '04-rendering',
+    title: 'Rendering',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/04-rendering.md',
+    route: '04-rendering',
+  },
+  {
+    order: 5,
+    id: '05-input',
+    title: 'Input',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/05-input.md',
+    route: '05-input',
+  },
+  {
+    order: 6,
+    id: '06-content-pipeline',
+    title: 'Content Pipeline',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/06-content-pipeline.md',
+    route: '06-content-pipeline',
+  },
+  {
+    order: 7,
+    id: '07-audio',
+    title: 'Audio',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/07-audio.md',
+    route: '07-audio',
+  },
+  {
+    order: 8,
+    id: '08-camera-collision-animation',
+    title: 'Camera, Collision, And Animation',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/08-camera-collision-animation.md',
+    route: '08-camera-collision-animation',
+  },
+  {
+    order: 9,
+    id: '09-publishing',
+    title: 'Publishing',
+    kind: 'experiment',
+    migrationSource: 'docs/tutorial/09-publishing.md',
+    route: '09-publishing',
+  },
+  {
+    order: 10,
+    id: '10-integrated-demo',
+    title: 'Integrated Demo',
+    kind: 'capstone',
+    migrationSource: 'docs/tutorial/10-integrated-demo.md',
+    route: '10-integrated-demo',
+  },
 ];
 
 let errors = 0;
@@ -56,6 +161,10 @@ function assertNonEmptyArray(value, label) {
 }
 
 function assertPathExists(path, label) {
+  if (typeof path !== 'string' || path.trim() === '') {
+    fail(`${label} must be a non-empty path`);
+    return;
+  }
   if (!existsSync(resolve(root, path))) {
     fail(`${label} does not exist: ${path}`);
   }
@@ -82,7 +191,96 @@ function validateTopLevel(manifest) {
   assertNonEmptyArray(manifest.lessons, 'lessons');
 }
 
-function validateLesson(lesson, seenIds, seenOrders) {
+function validateSchemaFile() {
+  const schema = readJson(schemaPath);
+  if (!schema) return;
+
+  assertNonEmptyString(schema.title, 'course/schema.json.title');
+
+  const lesson = schema.$defs?.lesson;
+  if (!lesson) {
+    fail('course/schema.json.$defs.lesson is required');
+    return;
+  }
+
+  const required = assertArray(lesson.required, 'course/schema.json.$defs.lesson.required');
+  for (const field of ['migrationSource', 'route']) {
+    if (!required.includes(field)) {
+      fail(`course/schema.json lesson.required is missing ${field}`);
+    }
+  }
+
+  const migrationSource = lesson.properties?.migrationSource;
+  if (migrationSource?.type !== 'string' || migrationSource?.minLength !== 1) {
+    fail('course/schema.json lesson.properties.migrationSource must be a non-empty string');
+  }
+
+  const route = lesson.properties?.route;
+  if (route?.type !== 'string' || route?.pattern !== '^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$') {
+    fail('course/schema.json lesson.properties.route must use the canonical slug pattern');
+  }
+}
+
+function validateCanonicalLessons(manifest) {
+  const actual = [...(manifest.lessons || [])].sort((a, b) => a.order - b.order);
+  const actualIds = actual.map((lesson) => lesson.id);
+  const expectedIds = canonicalLessons.map((lesson) => lesson.id);
+
+  if (actual.length !== canonicalLessons.length) {
+    fail(`manifest must contain exactly ${canonicalLessons.length} lessons; found ${actual.length}`);
+  }
+
+  for (let index = 0; index < canonicalLessons.length; index += 1) {
+    const expected = canonicalLessons[index];
+    const actualLesson = actual[index];
+    if (!actualLesson) {
+      fail(`missing canonical lesson at order ${expected.order}: ${expected.id}`);
+      continue;
+    }
+    if (actualLesson.order !== expected.order || actualLesson.id !== expected.id) {
+      fail(
+        `canonical lesson mismatch at index ${index}: expected ${expected.order}/${expected.id}, found ${actualLesson.order}/${actualLesson.id}`,
+      );
+      continue;
+    }
+    if (actualLesson.title !== expected.title) {
+      fail(`${expected.id}.title must be "${expected.title}"`);
+    }
+    if (actualLesson.kind !== expected.kind) {
+      fail(`${expected.id}.kind must be ${expected.kind}`);
+    }
+    if (actualLesson.migrationSource !== expected.migrationSource) {
+      fail(`${expected.id}.migrationSource must be ${expected.migrationSource}`);
+    }
+    if (actualLesson.route !== expected.route) {
+      fail(`${expected.id}.route must be ${expected.route}`);
+    }
+  }
+
+  for (const id of actualIds) {
+    if (!expectedIds.includes(id)) {
+      fail(`manifest contains non-v1 lesson id: ${id}`);
+    }
+  }
+}
+
+function validateSiteFiles() {
+  assertPathExists('tutorial-site/src/pages/index.astro', 'tutorial site index route');
+  assertPathExists('tutorial-site/src/pages/[...lesson].astro', 'tutorial site lesson route');
+}
+
+function validateReadmeTruth() {
+  const readmePath = resolve(root, 'README.md');
+  const content = existsSync(readmePath) ? readFileSync(readmePath, 'utf8') : '';
+  if (
+    /Primary course entrypoint:\s*```bash\s*cd tutorial-site/ms.test(content) &&
+    !content.includes('current manifest-backed course slice')
+  ) {
+    fail('README routes humans to tutorial-site without stating that the site is only the current manifest-backed slice during migration');
+  }
+}
+
+function validateLesson(lesson, seenIds, seenOrders, seenRoutes) {
   assertNonEmptyString(lesson.id, 'lesson.id');
   if (!/^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(lesson.id)) {
     fail(`lesson.id is not a valid slug: ${lesson.id}`);
@@ -102,6 +300,20 @@ function validateLesson(lesson, seenIds, seenOrders) {
 
   assertNonEmptyString(lesson.title, `${lesson.id}.title`);
   assertNonEmptyString(lesson.summary, `${lesson.id}.summary`);
+  assertNonEmptyString(lesson.migrationSource, `${lesson.id}.migrationSource`);
+  assertPathExists(lesson.migrationSource, `${lesson.id}.migrationSource`);
+  assertNonEmptyString(lesson.route, `${lesson.id}.route`);
+
+  if (lesson.route !== lesson.id) {
+    fail(`${lesson.id}.route must match lesson id for v1`);
+  }
+
+  if (typeof lesson.route === 'string' && lesson.route.trim() !== '') {
+    if (seenRoutes.has(lesson.route)) {
+      fail(`duplicate lesson route: ${lesson.route}`);
+    }
+    seenRoutes.add(lesson.route);
+  }
 
   const validKinds = new Set(['orientation', 'setup', 'experiment', 'capstone', 'appendix']);
   if (!validKinds.has(lesson.kind)) {
@@ -127,6 +339,12 @@ function validateHumanTrack(lesson) {
   const sections = assertNonEmptyArray(lesson.human.requiredSections, `${lesson.id}.human.requiredSections`);
   const contentPath = resolve(root, lesson.human.path);
   const content = existsSync(contentPath) ? readFileSync(contentPath, 'utf8') : '';
+
+  for (const required of requiredHumanSections) {
+    if (!sections.includes(required)) {
+      fail(`${lesson.id}.human.requiredSections is missing required section: ${required}`);
+    }
+  }
 
   for (const section of sections) {
     assertNonEmptyString(section, `${lesson.id}.human.requiredSections[]`);
@@ -226,14 +444,19 @@ function validateEvidence(lesson) {
 }
 
 const manifest = readJson(manifestPath);
+validateSchemaFile();
 if (manifest) {
   validateTopLevel(manifest);
+  validateCanonicalLessons(manifest);
   const seenIds = new Set();
   const seenOrders = new Set();
+  const seenRoutes = new Set();
   for (const lesson of manifest.lessons || []) {
-    validateLesson(lesson, seenIds, seenOrders);
+    validateLesson(lesson, seenIds, seenOrders, seenRoutes);
   }
 }
+validateSiteFiles();
+validateReadmeTruth();
 
 if (errors > 0) {
   console.error(`\n${errors} course validation error(s).`);

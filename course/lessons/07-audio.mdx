@@ -1,0 +1,62 @@
+---
+id: 07-audio
+title: Audio
+---
+
+## Goal
+
+Use `SoundEffect` for short sounds and `Song` with `MediaPlayer` for looping music.
+
+## Run
+
+```bash
+env E04_SMOKE_EXIT_AFTER_FRAMES=150 dotnet run --project experiments/e04-audio/E04Audio.csproj --no-restore
+```
+
+## Observe
+
+Stdout includes:
+
+```text
+Audio: music loop started.
+Audio: music stopped.
+Audio: sound effect played at frame 120.
+Smoke: exit.
+```
+
+Manual mode opens a window with two status blocks. Press `Space` for the effect and `M` to toggle music.
+
+## Expected Visual State
+
+The expected visual state is a DesktopGL window with effect and music state blocks. Smoke mode starts and stops music and plays sound effects while logging those audio actions.
+
+## Key Files
+
+- `experiments/e04-audio/Game1.cs`
+- `experiments/e04-audio/AudioControlState.cs`
+- `experiments/e04-audio/Content/Content.mgcb`
+- `experiments/e04-audio.Tests/Program.cs`
+
+## Walkthrough
+
+MonoGame uses `SoundEffect` for short, latency-sensitive sounds such as clicks or pickups. `Song` is loaded content for music, and `MediaPlayer` is the global player used to play, stop, and loop songs.
+
+`AudioControlState` keeps sound-effect and music actions separate. The smoke run starts the loop, plays the effect, stops music, plays the effect while music is stopped, then restarts music and plays the effect on the same frame.
+
+## Common Failures
+
+- `MediaPlayer` is global process state, so do not model it like many independent sound-effect instances.
+- This experiment reuses small WAV assets to focus on API behavior.
+- The `Song` and `SoundEffect` logical names must match `Content.mgcb`.
+
+## Exercise
+
+Decide whether a pickup sound should be `SoundEffect` or `Song`, and explain why.
+
+## Checkpoint
+
+You can choose between `SoundEffect` and `Song` for a given sound in a game.
+
+## Next
+
+Continue to `08-camera-collision-animation`.

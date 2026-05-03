@@ -5,44 +5,56 @@ title: Game Loop
 
 ## Goal
 
-Learn how MonoGame separates simulation work in `Update` from rendering work in `Draw`.
+Understand fixed vs variable timestep in MonoGame and why the repo uses smoke variables to make a GUI loop testable.
 
 ## Run
 
 ```bash
-dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj
+env E01_SMOKE_TOGGLE_AFTER_FRAMES=30 E01_SMOKE_EXIT_AFTER_FRAMES=90 dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj --no-restore
 ```
 
 ## Observe
 
-The experiment opens a DesktopGL window and displays loop or timing state. The learner should see the on-screen state continue changing while the app runs.
+The smoke run opens briefly, toggles once, and exits. Stdout includes:
+
+```text
+Update: timestep mode changed to Variable.
+Smoke: exit.
+```
+
+If you run manually, press `F1` and watch the window title switch between `Fixed 60 Hz` and `Variable`.
+
+## Expected Visual State
+
+The DesktopGL window uses the e01 game loop experiment. In manual mode the title starts as `E01 Game Loop - Fixed 60 Hz`; pressing `F1` switches to variable timestep. In smoke mode, stdout must include `Update: timestep mode changed to Variable.` and `Smoke: exit.`.
 
 ## Key Files
 
 - `experiments/e01-game-loop/Game1.cs`
 - `experiments/e01-game-loop/GameLoopState.cs`
+- `experiments/e01-game-loop/LoopSmokeSettings.cs`
 - `experiments/e01-game-loop.Tests/Program.cs`
 
 ## Walkthrough
 
-`Game1.cs` owns the MonoGame lifecycle. `Update` advances state and `Draw` renders the current state. `GameLoopState.cs` keeps the loop state testable outside a graphics window, which is why the companion test project can validate behavior without opening DesktopGL.
+MonoGame exposes timestep behavior through `IsFixedTimeStep`. When it is true, this experiment targets 60 updates per second. When it is false, MonoGame runs in variable timestep mode.
 
-The important learning point is the boundary: game simulation belongs in state that can be tested, while MonoGame-specific drawing stays near the game class.
+`GameLoopState` keeps the mode outside `Game1` so behavior can be tested without graphics. `LoopSmokeSettings` reads `E01_SMOKE_TOGGLE_AFTER_FRAMES` and `E01_SMOKE_EXIT_AFTER_FRAMES`, then `Update` treats the configured frame as if the toggle was pressed. That is more reliable on macOS than depending on synthetic keyboard events for a GUI app.
 
 ## Common Failures
 
-- DesktopGL window does not open: re-run setup and confirm the SDK and MonoGame dependencies are available.
-- The learner expects the test project to render a window: the test project validates state and intentionally avoids graphics.
-- Build fails after unrelated edits: run `dotnet build GameDemo.sln -m:1` and fix compile errors before changing lesson text.
+- Synthetic key events can be unreliable on macOS, so automated smoke uses environment variables.
+- `E01_SMOKE_EXIT_AFTER_FRAMES` must be greater than `E01_SMOKE_TOGGLE_AFTER_FRAMES`.
+- `--no-restore` assumes the project has already restored. Rerun without it once if packages are missing.
 
 ## Exercise
 
-Find where elapsed loop state is updated, then find where drawing reads that state. Explain which part can be tested without a window and why.
+Find where fixed/variable timestep is toggled and where the active mode is displayed.
 
 ## Checkpoint
 
-You can explain why the test project validates loop state without launching MonoGame.
+You can describe why fixed 60 Hz is useful for deterministic learning experiments and why variable timestep is still worth seeing.
 
 ## Next
 
-Continue to rendering.
+Continue to `04-rendering`.

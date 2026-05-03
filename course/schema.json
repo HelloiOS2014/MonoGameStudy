@@ -28,7 +28,20 @@
     },
     "lesson": {
       "type": "object",
-      "required": ["id", "order", "title", "summary", "kind", "human", "agent", "code", "commands", "evidence"],
+      "required": [
+        "id",
+        "order",
+        "title",
+        "summary",
+        "kind",
+        "migrationSource",
+        "route",
+        "human",
+        "agent",
+        "code",
+        "commands",
+        "evidence"
+      ],
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "pattern": "^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$" },
@@ -36,6 +49,8 @@
         "title": { "type": "string", "minLength": 1 },
         "summary": { "type": "string", "minLength": 1 },
         "kind": { "enum": ["orientation", "setup", "experiment", "capstone", "appendix"] },
+        "migrationSource": { "type": "string", "minLength": 1 },
+        "route": { "type": "string", "pattern": "^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$" },
         "human": {
           "type": "object",
           "required": ["path", "requiredSections"],

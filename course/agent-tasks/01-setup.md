@@ -2,37 +2,41 @@
 
 ## Task
 
-Maintain or improve the setup lesson without changing repository toolchain behavior.
+Maintain or improve the Setup lesson and expected state without changing repository toolchain behavior.
 
 ## Context
 
-This lesson maps to repository bootstrap files: `global.json`, `tools/check-env.sh`, and `GameDemo.sln`.
+This lesson maps to `docs/tutorial/01-setup.md`, `course/lessons/01-setup.mdx`, `global.json`, `tools/check-env.sh`, and `GameDemo.sln`.
 
 ## Allowed Files
 
 - `course/lessons/01-setup.mdx`
 - `course/agent-tasks/01-setup.md`
+- `course/evidence/01-setup/expected-state.md`
 - `course/manifest.json` only when updating metadata for this lesson
 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
 - `experiments/**`
+- unrelated `course/lessons/**`
+- unrelated `course/agent-tasks/**`
 
 ## Spec Required
 
-Any change to `tools/check-env.sh` or `global.json` requires an approved spec because it changes bootstrap behavior.
+Any change to `tools/check-env.sh`, `global.json`, or solution-level toolchain behavior requires an approved spec because it changes bootstrap behavior.
 
 ## Commands
 
-- `./tools/check-env.sh`
 - `./tools/check-course.sh`
+- `./tools/check-env.sh`
 
 ## Acceptance
 
-- Human lesson still contains every section required by the manifest.
-- Agent task packet still contains every required operating section.
-- Manifest paths still resolve.
+- Human lesson keeps every required section from the manifest.
+- Expected state matches setup command behavior.
+- Agent packet remains lesson-scoped and does not authorize runtime code changes.
+- Manifest paths and commands still resolve.
 - Verification commands are reported with results.
 
 ## Failure Handling
@@ -41,4 +45,4 @@ If `./tools/check-env.sh` fails because the local machine is missing a tool, rep
 
 ## Report Format
 
-Report changed files, verification commands, and any setup checks that could not be completed locally.
+Report changed files, verification commands with exit codes, score impact, and any setup checks that could not be completed locally.

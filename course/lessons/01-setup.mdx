@@ -5,7 +5,7 @@ title: Setup
 
 ## Goal
 
-Prepare the local macOS DesktopGL toolchain used by this MonoGame tutorial.
+Prepare the machine for .NET 10 and MonoGame DesktopGL, then verify that this repo can create and run the same project shape used by the experiments.
 
 ## Run
 
@@ -15,7 +15,11 @@ Prepare the local macOS DesktopGL toolchain used by this MonoGame tutorial.
 
 ## Observe
 
-The script should report the active .NET SDK, MonoGame template availability, and MGCB tooling readiness. Treat any missing tool as a setup blocker before running experiments.
+The script reports macOS readiness, the active .NET SDK, `global.json`, MonoGame template availability, and MGCB-related tooling expectations. Treat any missing tool as a setup blocker before running experiments.
+
+## Expected Visual State
+
+No DesktopGL window opens in setup. The expected state is terminal output from `./tools/check-env.sh` showing macOS, `global.json`, .NET 10, and the `mgdesktopgl` template check.
 
 ## Key Files
 
@@ -25,19 +29,20 @@ The script should report the active .NET SDK, MonoGame template availability, an
 
 ## Walkthrough
 
-This repository pins its SDK through `global.json` and keeps the tutorial focused on macOS DesktopGL. `tools/check-env.sh` is the first readiness check because it catches missing SDKs, missing templates, and missing content tooling before a learner opens a game window.
+`global.json` pins the repo to .NET 10. The checked-in value is `10.0.100` with `rollForward` set to `latestFeature`, so a newer installed 10.0 feature band can be selected.
 
-Run this check from the repository root. Do not run it from inside an experiment directory because the script is part of the repository-level bootstrap.
+`tools/check-env.sh` is the repository-level readiness check. It verifies the current OS target, confirms `global.json` exists, checks that the selected SDK is .NET 10, and confirms the `mgdesktopgl` template is installed. Run it from the repository root before opening a MonoGame window.
 
 ## Common Failures
 
 - `dotnet` is missing from `PATH`: install the pinned SDK and open a fresh shell.
-- MonoGame templates are missing: install the MonoGame templates before creating or repairing DesktopGL projects.
+- Wrong SDK: make sure `global.json` is at the repo root and a .NET 10 SDK is installed.
+- MonoGame templates are missing: install templates with `dotnet new install MonoGame.Templates.CSharp`.
 - MGCB tooling is missing or stale: restore local tools in the experiment directory that owns the content pipeline.
 
 ## Exercise
 
-Open `global.json` and identify the SDK version this repository expects. Then open `tools/check-env.sh` and identify which checks protect a fresh machine from starting the tutorial with a broken toolchain.
+Run `./tools/check-env.sh`, then explain one healthy line and one possible warning or failure line.
 
 ## Checkpoint
 
@@ -45,4 +50,4 @@ You can explain why setup is verified before any MonoGame window is launched.
 
 ## Next
 
-Continue to the game-loop lesson after the environment check passes.
+Continue to `02-first-window`.

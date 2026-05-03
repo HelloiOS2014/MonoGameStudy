@@ -1,0 +1,72 @@
+---
+id: 10-integrated-demo
+title: Integrated Demo
+---
+
+## Goal
+
+Connect the previous concepts into the playable collector demo.
+
+## Run
+
+Manual run:
+
+```bash
+dotnet run --project demo/integrated-demo/IntegratedDemo.csproj
+```
+
+Automated smoke:
+
+```bash
+env DEMO_SMOKE_EXIT_AFTER_FRAMES=160 dotnet run --project demo/integrated-demo/IntegratedDemo.csproj --no-restore
+```
+
+## Observe
+
+Manual mode opens the demo. Press `Enter`, collect the yellow pickups, avoid red hazards, and press `Enter` or `R` after win/loss to restart.
+
+Smoke output includes:
+
+```text
+Phase: started.
+Collect: score=3/3.
+Phase: won.
+Phase: restarted.
+Smoke: exit.
+```
+
+## Expected Visual State
+
+The expected visual state is the collector arena starting at the Start phase. Smoke mode collects all pickups, reaches Won, restarts, and exits.
+
+## Key Files
+
+- `demo/integrated-demo/DemoState.cs`
+- `demo/integrated-demo/DemoTypes.cs`
+- `demo/integrated-demo/Game1.cs`
+- `demo/integrated-demo/Content/Content.mgcb`
+- `demo/integrated-demo.Tests/Program.cs`
+
+## Walkthrough
+
+The demo has four phases: `Start`, `Playing`, `Won`, and `Lost`. `DemoState` is the deterministic model. It owns player position, score, pickups, hazards, phase transitions, circle collision checks, and restart behavior.
+
+`Game1` connects the model to MonoGame by polling input, loading content, drawing the arena, logging phase changes, and playing the collect sound. Smoke mode disables vsync, uses variable timestep at the MonoGame layer, then feeds the model a fixed `1/60` simulation step so the capstone can be checked without manual input.
+
+## Common Failures
+
+- GUI smoke can hang under vsync/fixed timestep on macOS; this demo disables vsync and uses fixed smoke simulation time.
+- The circles are drawn as filled rectangles in this learning demo; collision still uses circle math in `DemoState`.
+- If content fails to load, rerun restore/build without `--no-restore` once and inspect `Content/Content.mgcb`.
+
+## Exercise
+
+Trace the model transition from Start to Playing to Won.
+
+## Checkpoint
+
+You can run the demo manually or use smoke mode to prove the full start/play/win/restart loop.
+
+## Next
+
+You have completed the canonical 00-10 v1 course path.

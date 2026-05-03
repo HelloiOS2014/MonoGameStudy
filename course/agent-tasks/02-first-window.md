@@ -1,18 +1,18 @@
-# Agent Task: 03 Game Loop
+# Agent Task: 02 First Window
 
 ## Task
 
-Maintain or improve the Game Loop lesson and expected state without changing experiment behavior.
+Maintain or improve the First Window lesson and expected state without changing experiment behavior.
 
 ## Context
 
-This lesson maps to `docs/tutorial/03-game-loop.md`, `course/lessons/03-game-loop.mdx`, `experiments/e01-game-loop`, and `experiments/e01-game-loop.Tests`.
+This lesson maps to `docs/tutorial/02-first-window.md`, `course/lessons/02-first-window.mdx`, and `experiments/e01-game-loop`.
 
 ## Allowed Files
 
-- `course/lessons/03-game-loop.mdx`
-- `course/agent-tasks/03-game-loop.md`
-- `course/evidence/03-game-loop/expected-state.md`
+- `course/lessons/02-first-window.mdx`
+- `course/agent-tasks/02-first-window.md`
+- `course/evidence/02-first-window/expected-state.md`
 - `course/manifest.json` only when updating metadata for this lesson
 
 ## Blocked Files
