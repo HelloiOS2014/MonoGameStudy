@@ -57,6 +57,8 @@ dotnet tool restore
 
 Then build again.
 
+If MGCB or `dotnet tool restore` prints a cache-related warning but exits 0, treat it as non-blocking and continue to the build step. If the next content build fails, delete the affected project's `bin/` and `obj/` directories, rerun `dotnet tool restore` from that project directory, then rebuild without `--no-restore` once.
+
 ### `.mgcb` globbing
 
 MonoGame build targets can pick up extra `.mgcb` files. `e05` sets `EnableMGCBItems=false` so the deliberate failure file under `docs/` is not built during normal project builds.
