@@ -1,0 +1,48 @@
+---
+id: 03-game-loop
+title: Game Loop
+---
+
+## Goal
+
+Learn how MonoGame separates simulation work in `Update` from rendering work in `Draw`.
+
+## Run
+
+```bash
+dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj
+```
+
+## Observe
+
+The experiment opens a DesktopGL window and displays loop or timing state. The learner should see the on-screen state continue changing while the app runs.
+
+## Key Files
+
+- `experiments/e01-game-loop/Game1.cs`
+- `experiments/e01-game-loop/GameLoopState.cs`
+- `experiments/e01-game-loop.Tests/Program.cs`
+
+## Walkthrough
+
+`Game1.cs` owns the MonoGame lifecycle. `Update` advances state and `Draw` renders the current state. `GameLoopState.cs` keeps the loop state testable outside a graphics window, which is why the companion test project can validate behavior without opening DesktopGL.
+
+The important learning point is the boundary: game simulation belongs in state that can be tested, while MonoGame-specific drawing stays near the game class.
+
+## Common Failures
+
+- DesktopGL window does not open: re-run setup and confirm the SDK and MonoGame dependencies are available.
+- The learner expects the test project to render a window: the test project validates state and intentionally avoids graphics.
+- Build fails after unrelated edits: run `dotnet build GameDemo.sln -m:1` and fix compile errors before changing lesson text.
+
+## Exercise
+
+Find where elapsed loop state is updated, then find where drawing reads that state. Explain which part can be tested without a window and why.
+
+## Checkpoint
+
+You can explain why the test project validates loop state without launching MonoGame.
+
+## Next
+
+Continue to rendering.

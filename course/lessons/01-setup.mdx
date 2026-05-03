@@ -1,0 +1,48 @@
+---
+id: 01-setup
+title: Setup
+---
+
+## Goal
+
+Prepare the local macOS DesktopGL toolchain used by this MonoGame tutorial.
+
+## Run
+
+```bash
+./tools/check-env.sh
+```
+
+## Observe
+
+The script should report the active .NET SDK, MonoGame template availability, and MGCB tooling readiness. Treat any missing tool as a setup blocker before running experiments.
+
+## Key Files
+
+- `global.json`
+- `tools/check-env.sh`
+- `GameDemo.sln`
+
+## Walkthrough
+
+This repository pins its SDK through `global.json` and keeps the tutorial focused on macOS DesktopGL. `tools/check-env.sh` is the first readiness check because it catches missing SDKs, missing templates, and missing content tooling before a learner opens a game window.
+
+Run this check from the repository root. Do not run it from inside an experiment directory because the script is part of the repository-level bootstrap.
+
+## Common Failures
+
+- `dotnet` is missing from `PATH`: install the pinned SDK and open a fresh shell.
+- MonoGame templates are missing: install the MonoGame templates before creating or repairing DesktopGL projects.
+- MGCB tooling is missing or stale: restore local tools in the experiment directory that owns the content pipeline.
+
+## Exercise
+
+Open `global.json` and identify the SDK version this repository expects. Then open `tools/check-env.sh` and identify which checks protect a fresh machine from starting the tutorial with a broken toolchain.
+
+## Checkpoint
+
+You can explain why setup is verified before any MonoGame window is launched.
+
+## Next
+
+Continue to the game-loop lesson after the environment check passes.

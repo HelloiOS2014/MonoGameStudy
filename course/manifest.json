@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "title": "MonoGame Study Framework",
+  "tracks": ["human", "agent"],
+  "lessons": [
+    {
+      "id": "01-setup",
+      "order": 1,
+      "title": "Setup",
+      "summary": "Prepare the macOS DesktopGL and .NET toolchain used by the tutorial.",
+      "kind": "setup",
+      "human": {
+        "path": "course/lessons/01-setup.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/01-setup.md",
+        "allowedFiles": [
+          "course/lessons/01-setup.mdx",
+          "course/agent-tasks/01-setup.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "experiments/**"
+        ],
+        "specRequiredFiles": [
+          "tools/check-env.sh",
+          "global.json"
+        ]
+      },
+      "code": {
+        "projects": [],
+        "tests": [],
+        "keyFiles": [
+          "global.json",
+          "tools/check-env.sh",
+          "GameDemo.sln"
+        ]
+      },
+      "commands": {
+        "run": [
+          "./tools/check-env.sh"
+        ],
+        "verify": [
+          "./tools/check-env.sh"
+        ]
+      },
+      "evidence": {
+        "status": "notApplicable",
+        "reason": "Setup lesson evidence is command output rather than a screenshot.",
+        "expectedPaths": []
+      }
+    },
+    {
+      "id": "03-game-loop",
+      "order": 3,
+      "title": "Game Loop",
+      "summary": "Understand MonoGame Update and Draw cadence through the e01 experiment.",
+      "kind": "experiment",
+      "human": {
+        "path": "course/lessons/03-game-loop.mdx",
+        "requiredSections": [
+          "Goal",
+          "Run",
+          "Observe",
+          "Key Files",
+          "Walkthrough",
+          "Common Failures",
+          "Exercise",
+          "Checkpoint",
+          "Next"
+        ]
+      },
+      "agent": {
+        "taskPath": "course/agent-tasks/03-game-loop.md",
+        "allowedFiles": [
+          "course/lessons/03-game-loop.mdx",
+          "course/agent-tasks/03-game-loop.md",
+          "course/manifest.json"
+        ],
+        "blockedFiles": [
+          "demo/integrated-demo/**",
+          "course/lessons/01-setup.mdx",
+          "course/agent-tasks/01-setup.md"
+        ],
+        "specRequiredFiles": [
+          "experiments/e01-game-loop/**",
+          "experiments/e01-game-loop.Tests/**"
+        ]
+      },
+      "code": {
+        "projects": [
+          "experiments/e01-game-loop/E01GameLoop.csproj"
+        ],
+        "tests": [
+          "experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj"
+        ],
+        "keyFiles": [
+          "experiments/e01-game-loop/Game1.cs",
+          "experiments/e01-game-loop/GameLoopState.cs",
+          "experiments/e01-game-loop.Tests/Program.cs"
+        ]
+      },
+      "commands": {
+        "run": [
+          "dotnet run --project experiments/e01-game-loop/E01GameLoop.csproj"
+        ],
+        "verify": [
+          "dotnet build GameDemo.sln -m:1",
+          "dotnet run --project experiments/e01-game-loop.Tests/E01GameLoop.Tests.csproj"
+        ]
+      },
+      "evidence": {
+        "status": "pending",
+        "reason": "First implementation creates structure before screenshot capture is automated.",
+        "expectedPaths": [
+          "course/evidence/03-game-loop/expected-overlay.png"
+        ]
+      }
+    }
+  ]
+}
