@@ -2,10 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import TutorialLayout from '../layouts/TutorialLayout.astro';
 import LessonHeader from '../components/LessonHeader.astro';
-import CommandBlock from '../components/CommandBlock.astro';
-import KeyFileList from '../components/KeyFileList.astro';
-import Checkpoint from '../components/Checkpoint.astro';
-import EvidencePanel from '../components/EvidencePanel.astro';
 import { loadCourse, findLesson } from '../data/loadCourse';
 
 export async function getStaticPaths() {
@@ -32,21 +28,17 @@ if (!entry) {
 }
 
 const { Content } = await render(entry);
+const currentIndex = course.lessons.findIndex((item) => item.id === lesson.id);
+const previousLesson = currentIndex > 0 ? course.lessons[currentIndex - 1] : undefined;
+const nextLesson = currentIndex >= 0 ? course.lessons[currentIndex + 1] : undefined;
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <TutorialLayout title={`${lesson.title} - ${course.title}`} lessons={course.lessons} currentId={lesson.id}>
   <LessonHeader lesson={lesson} />
-  <CommandBlock title="Run" commands={lesson.commands.run} />
-  <KeyFileList files={lesson.code.keyFiles} />
-  <EvidencePanel lesson={lesson} />
-  <section>
-    <h2>Maintainer Links</h2>
-    <ul>
-      <li>Agent task packet: <code>{lesson.agent.taskPath}</code></li>
-      <li>Migration source: <code>{lesson.migrationSource}</code></li>
-    </ul>
-  </section>
   <Content />
-  <CommandBlock title="Verify" commands={lesson.commands.verify} />
-  <Checkpoint sections={lesson.human.requiredSections} />
+  <nav class="lesson-pager" aria-label="Lesson navigation">
+    {previousLesson ? <a href={`${basePath}${previousLesson.route}`}>Previous: {previousLesson.title}</a> : <span></span>}
+    {nextLesson ? <a href={`${basePath}${nextLesson.route}`}>Next: {nextLesson.title}</a> : <span>Course complete</span>}
+  </nav>
 </TutorialLayout>

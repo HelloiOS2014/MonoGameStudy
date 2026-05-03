@@ -6,10 +6,11 @@ interface Props {
 }
 
 const { lesson } = Astro.props;
+const lessonNumber = String(lesson.order).padStart(2, '0');
 ---
 
 <header class="lesson-header">
-  <p class="eyebrow">{lesson.kind}</p>
+  <p class="eyebrow">Lesson {lessonNumber}</p>
   <h1>{lesson.title}</h1>
   <p>{lesson.summary}</p>
 </header>

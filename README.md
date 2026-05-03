@@ -6,7 +6,7 @@ This repository is a MonoGame Study Framework built from completed Phase 1 resea
 
 It serves two audiences:
 
-- humans learning MonoGame through the manifest-driven tutorial site, course lessons, experiments, and integrated demo,
+- humans learning MonoGame through the human-facing tutorial site, course lessons, experiments, and integrated demo,
 - agents maintaining and extending the framework through the course manifest, lesson task packets, explicit boundaries, and verification commands.
 
 It is not a production game project.
@@ -18,7 +18,7 @@ The repository has a complete dual-track v1 tutorial.
 - `course/manifest.json` is the canonical course source.
 - `course/lessons/` contains the complete 00-10 human lesson path.
 - `course/agent-tasks/` contains the matching 00-10 lesson task packets for agents.
-- `tutorial-site/` renders the complete 00-10 v1 course from `course/manifest.json`.
+- `tutorial-site/` is the human-facing tutorial site for the complete 00-10 v1 course.
 - `docs/tutorial/` is the legacy migration source.
 
 ## For Humans
@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-The tutorial site renders the complete 00-10 v1 course from `course/manifest.json`.
+The tutorial site is the human-facing course reader. Agent instructions stay in `AGENTS.md`, `course/agent-tasks/`, and `docs/agents/`.
 
 Legacy migration source:
 

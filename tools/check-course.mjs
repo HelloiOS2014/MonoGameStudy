@@ -269,6 +269,31 @@ function validateSiteFiles() {
   assertPathExists('tutorial-site/src/pages/[...lesson].astro', 'tutorial site lesson route');
 }
 
+function validateHumanOnlyTutorialSite() {
+  const siteFiles = [
+    'tutorial-site/src/pages/index.astro',
+    'tutorial-site/src/pages/[...lesson].astro',
+  ];
+  const internalPhrases = [
+    'Manifest-driven',
+    'humans and agents',
+    'course/manifest.json',
+    'Maintainer Links',
+    'Agent task packet',
+    'Migration source',
+  ];
+
+  for (const siteFile of siteFiles) {
+    const sitePath = resolve(root, siteFile);
+    const content = existsSync(sitePath) ? readFileSync(sitePath, 'utf8') : '';
+    for (const phrase of internalPhrases) {
+      if (content.includes(phrase)) {
+        fail(`${siteFile} exposes agent/maintainer internals to the human tutorial site: ${phrase}`);
+      }
+    }
+  }
+}
+
 function validateReadmeTruth() {
   const readmePath = resolve(root, 'README.md');
   const content = existsSync(readmePath) ? readFileSync(readmePath, 'utf8') : '';
@@ -277,8 +302,8 @@ function validateReadmeTruth() {
     fail('README must route humans to the tutorial-site primary course entrypoint');
   }
 
-  if (!content.includes('complete 00-10 v1 course from `course/manifest.json`')) {
-    fail('README must state that the tutorial site renders the complete 00-10 v1 course from course/manifest.json');
+  if (!content.includes('human-facing tutorial site')) {
+    fail('README must describe tutorial-site as the human-facing tutorial site');
   }
 
   if (!content.includes('Legacy migration source')) {
@@ -291,6 +316,7 @@ function validateReadmeTruth() {
     'During migration',
     'intended canonical',
     'once the quality gate is implemented',
+    'manifest-driven tutorial site',
   ];
   for (const phrase of stalePhrases) {
     if (content.includes(phrase)) {
@@ -475,6 +501,7 @@ if (manifest) {
   }
 }
 validateSiteFiles();
+validateHumanOnlyTutorialSite();
 validateReadmeTruth();
 
 if (errors > 0) {

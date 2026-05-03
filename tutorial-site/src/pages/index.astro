@@ -4,20 +4,27 @@ import { loadCourse } from '../data/loadCourse';
 
 const course = loadCourse();
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const firstLesson = course.lessons[0];
+const siteTitle = 'MonoGame Study Course';
 ---
 
-<TutorialLayout title={course.title} lessons={course.lessons}>
-  <h1>{course.title}</h1>
-  <p>Manifest-driven MonoGame tutorial for humans and agents.</p>
-  <p>This site renders the lessons listed in <code>course/manifest.json</code>.</p>
+<TutorialLayout title={siteTitle} lessons={course.lessons}>
+  <h1>{siteTitle}</h1>
+  <p>Learn MonoGame on macOS by running a finished demo, then studying the small experiments that explain each part.</p>
 
-  <section>
-    <h2>Start</h2>
-    <pre><code>./tools/check-env.sh</code></pre>
+  <section class="callout">
+    <h2>Start Here</h2>
+    <p>Begin with the orientation lesson, then follow the course in order from setup through the integrated collector demo.</p>
+    {firstLesson && <p><a class="primary-link" href={`${basePath}${firstLesson.route}`}>Open lesson 00 - {firstLesson.title}</a></p>}
   </section>
 
-  <section>
-    <h2>Lessons</h2>
+  <section class="callout">
+    <h2>What You Will Run</h2>
+    <p>The course uses completed MonoGame examples for game loop timing, rendering, input, content loading, audio, camera and collision, animation, publishing, and a final playable demo.</p>
+  </section>
+
+  <section class="lesson-list">
+    <h2>Course Path</h2>
     <ol>
       {course.lessons.map((lesson) => (
         <li>

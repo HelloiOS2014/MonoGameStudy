@@ -44,7 +44,7 @@ MonoGame input is polled during `Update`. This experiment reads keyboard, mouse,
 
 `PlayerMotion.Apply` moves the square from that snapshot. Keyboard and gamepad-style movement share the same axis path; mouse input directly places the square at a target. `ButtonEdgeState` compares previous and current button state so `PressedThisFrame` only fires on the first down frame while `Held` remains true as long as the button stays down.
 
-`InputSnapshot`, `ButtonEdgeState`, and `PlayerMotion` are deterministic enough for the test project to exercise without a graphics device. `Game1.Update` is the bridge: it polls MonoGame input, builds the snapshot, applies motion, and lets `InputSmokeSettings` supply repeatable axis and mouse frames for command evidence.
+`InputSnapshot`, `ButtonEdgeState`, and `PlayerMotion` are deterministic enough for the test project to exercise without a graphics device. `Game1.Update` is the bridge: it polls MonoGame input, builds the snapshot, applies motion, and lets `InputSmokeSettings` supply repeatable axis and mouse frames for command output.
 
 ## Common Failures
 
