@@ -1,0 +1,23 @@
+---
+import type { CourseLesson } from '../data/loadCourse';
+
+interface Props {
+  lessons: CourseLesson[];
+  currentId?: string;
+}
+
+const { lessons, currentId } = Astro.props;
+---
+
+<nav aria-label="Course lessons" class="course-nav">
+  <ol>
+    {lessons.map((lesson) => (
+      <li>
+        <a href={`/${lesson.id}`} aria-current={lesson.id === currentId ? 'page' : undefined}>
+          <span>{String(lesson.order).padStart(2, '0')}</span>
+          {lesson.title}
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>

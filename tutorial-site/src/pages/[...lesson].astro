@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import TutorialLayout from '../layouts/TutorialLayout.astro';
+import LessonHeader from '../components/LessonHeader.astro';
+import CommandBlock from '../components/CommandBlock.astro';
+import KeyFileList from '../components/KeyFileList.astro';
+import Checkpoint from '../components/Checkpoint.astro';
+import EvidencePanel from '../components/EvidencePanel.astro';
+import { loadCourse, findLesson } from '../data/loadCourse';
+
+export async function getStaticPaths() {
+  const course = loadCourse();
+  return course.lessons.map((lesson) => ({
+    params: { lesson: lesson.id },
+    props: { lessonId: lesson.id },
+  }));
+}
+
+const { lessonId } = Astro.props;
+const course = loadCourse();
+const lesson = findLesson(lessonId);
+
+if (!lesson) {
+  throw new Error(`Lesson not found in manifest: ${lessonId}`);
+}
+
+const entries = await getCollection('lessons');
+const entry = entries.find((item) => item.data.id === lesson.id);
+
+if (!entry) {
+  throw new Error(`Lesson content not found: ${lesson.id}`);
+}
+
+const { Content } = await render(entry);
+---
+
+<TutorialLayout title={`${lesson.title} - ${course.title}`} lessons={course.lessons} currentId={lesson.id}>
+  <LessonHeader lesson={lesson} />
+  <CommandBlock title="Run" commands={lesson.commands.run} />
+  <KeyFileList files={lesson.code.keyFiles} />
+  <EvidencePanel lesson={lesson} />
+  <Content />
+  <CommandBlock title="Verify" commands={lesson.commands.verify} />
+  <Checkpoint sections={lesson.human.requiredSections} />
+</TutorialLayout>

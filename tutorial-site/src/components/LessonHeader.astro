@@ -1,0 +1,15 @@
+---
+import type { CourseLesson } from '../data/loadCourse';
+
+interface Props {
+  lesson: CourseLesson;
+}
+
+const { lesson } = Astro.props;
+---
+
+<header class="lesson-header">
+  <p class="eyebrow">{lesson.kind}</p>
+  <h1>{lesson.title}</h1>
+  <p>{lesson.summary}</p>
+</header>

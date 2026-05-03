@@ -23,3 +23,8 @@ publish/
 
 # Tool caches
 .tool-versions
+
+# Tutorial site build and dependency artifacts
+tutorial-site/node_modules/
+tutorial-site/.astro/
+tutorial-site/dist/

@@ -1,0 +1,16 @@
+---
+interface Props {
+  files: string[];
+}
+
+const { files } = Astro.props;
+---
+
+<section class="key-files">
+  <h2>Key Files</h2>
+  <ul>
+    {files.map((file) => (
+      <li><code>{file}</code></li>
+    ))}
+  </ul>
+</section>

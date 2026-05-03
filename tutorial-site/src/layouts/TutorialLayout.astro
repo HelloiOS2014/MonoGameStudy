@@ -1,0 +1,107 @@
+---
+import CourseNav from '../components/CourseNav.astro';
+import type { CourseLesson } from '../data/loadCourse';
+
+interface Props {
+  title: string;
+  lessons: CourseLesson[];
+  currentId?: string;
+}
+
+const { title, lessons, currentId } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f7f8fb;
+        color: #1f2933;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      a {
+        color: #1459b8;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      aside {
+        border-right: 1px solid #d8dee8;
+        background: #ffffff;
+        padding: 24px;
+      }
+
+      main {
+        max-width: 920px;
+        padding: 32px;
+      }
+
+      pre {
+        overflow-x: auto;
+        border: 1px solid #d8dee8;
+        background: #101828;
+        color: #f7f8fb;
+        padding: 12px;
+      }
+
+      code {
+        font-family: "SFMono-Regular", Consolas, monospace;
+      }
+
+      .course-nav ol {
+        list-style: none;
+        padding: 0;
+      }
+
+      .course-nav li + li {
+        margin-top: 10px;
+      }
+
+      .course-nav a[aria-current="page"] {
+        font-weight: 700;
+      }
+
+      .eyebrow {
+        color: #5f6b7a;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 760px) {
+        .shell {
+          display: block;
+        }
+
+        aside {
+          border-right: 0;
+          border-bottom: 1px solid #d8dee8;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside>
+        <h2>MonoGame Study</h2>
+        <CourseNav lessons={lessons} currentId={currentId} />
+      </aside>
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

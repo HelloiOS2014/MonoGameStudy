@@ -1,0 +1,22 @@
+---
+import type { CourseLesson } from '../data/loadCourse';
+
+interface Props {
+  lesson: CourseLesson;
+}
+
+const { lesson } = Astro.props;
+---
+
+<section class="evidence-panel">
+  <h2>Evidence</h2>
+  <p>Status: <strong>{lesson.evidence.status}</strong></p>
+  {lesson.evidence.reason && <p>{lesson.evidence.reason}</p>}
+  {lesson.evidence.expectedPaths.length > 0 && (
+    <ul>
+      {lesson.evidence.expectedPaths.map((path) => (
+        <li><code>{path}</code></li>
+      ))}
+    </ul>
+  )}
+</section>

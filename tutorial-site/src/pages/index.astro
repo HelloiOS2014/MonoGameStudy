@@ -1,0 +1,28 @@
+---
+import TutorialLayout from '../layouts/TutorialLayout.astro';
+import { loadCourse } from '../data/loadCourse';
+
+const course = loadCourse();
+---
+
+<TutorialLayout title={course.title} lessons={course.lessons}>
+  <h1>{course.title}</h1>
+  <p>Manifest-driven MonoGame tutorial for humans and agents.</p>
+
+  <section>
+    <h2>Start</h2>
+    <pre><code>./tools/check-env.sh</code></pre>
+  </section>
+
+  <section>
+    <h2>Lessons</h2>
+    <ol>
+      {course.lessons.map((lesson) => (
+        <li>
+          <a href={`/${lesson.id}`}>{String(lesson.order).padStart(2, '0')} - {lesson.title}</a>
+          <p>{lesson.summary}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</TutorialLayout>
