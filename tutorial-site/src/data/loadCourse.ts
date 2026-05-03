@@ -13,6 +13,8 @@ export interface CourseLesson {
   title: string;
   summary: string;
   kind: 'orientation' | 'setup' | 'experiment' | 'capstone' | 'appendix';
+  migrationSource: string;
+  route: string;
   human: {
     path: string;
     requiredSections: string[];

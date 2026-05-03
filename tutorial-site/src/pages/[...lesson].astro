@@ -11,7 +11,7 @@ import { loadCourse, findLesson } from '../data/loadCourse';
 export async function getStaticPaths() {
   const course = loadCourse();
   return course.lessons.map((lesson) => ({
-    params: { lesson: lesson.id },
+    params: { lesson: lesson.route },
     props: { lessonId: lesson.id },
   }));
 }
@@ -39,6 +39,13 @@ const { Content } = await render(entry);
   <CommandBlock title="Run" commands={lesson.commands.run} />
   <KeyFileList files={lesson.code.keyFiles} />
   <EvidencePanel lesson={lesson} />
+  <section>
+    <h2>Maintainer Links</h2>
+    <ul>
+      <li>Agent task packet: <code>{lesson.agent.taskPath}</code></li>
+      <li>Migration source: <code>{lesson.migrationSource}</code></li>
+    </ul>
+  </section>
   <Content />
   <CommandBlock title="Verify" commands={lesson.commands.verify} />
   <Checkpoint sections={lesson.human.requiredSections} />
