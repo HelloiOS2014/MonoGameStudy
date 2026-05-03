@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/04-rendering.md`, `course/lessons/04-renderin
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e02-2d-rendering/**`
 - `experiments/e02-2d-rendering.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/04-rendering.md`, `course/lessons/04-renderin
 
 ## Spec Required
 
-Any change under `experiments/e02-2d-rendering/**` or `experiments/e02-2d-rendering.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e02-2d-rendering/**`, or `experiments/e02-2d-rendering.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

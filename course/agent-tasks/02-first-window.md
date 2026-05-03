@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/02-first-window.md`, `course/lessons/02-first
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e01-game-loop/**`
 - `experiments/e01-game-loop.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/02-first-window.md`, `course/lessons/02-first
 
 ## Spec Required
 
-Any change under `experiments/e01-game-loop/**` or `experiments/e01-game-loop.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e01-game-loop/**`, or `experiments/e01-game-loop.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

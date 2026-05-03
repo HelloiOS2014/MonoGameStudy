@@ -25,7 +25,7 @@ This lesson maps to `docs/tutorial/10-integrated-demo.md`, `course/lessons/10-in
 
 ## Spec Required
 
-Any change under `demo/integrated-demo/**` or `demo/integrated-demo.Tests/**` requires an approved spec because the integrated demo is capstone evidence, not a product game expansion target.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, or `experiments/**` requires an approved spec because the integrated demo is capstone evidence, not a product game expansion target. This packet does not authorize runtime edits.
 
 ## Commands
 

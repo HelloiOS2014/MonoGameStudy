@@ -18,13 +18,16 @@ This lesson maps to `docs/tutorial/01-setup.md`, `course/lessons/01-setup.mdx`, 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/**`
 - unrelated `course/lessons/**`
 - unrelated `course/agent-tasks/**`
 
 ## Spec Required
 
-Any change to `tools/check-env.sh`, `global.json`, or solution-level toolchain behavior requires an approved spec because it changes bootstrap behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, or `experiments/**` requires an approved spec. This setup packet does not authorize runtime edits.
+
+Any change to `tools/check-env.sh`, `global.json`, or solution-level toolchain behavior requires an approved spec and must also be explicitly allowed by this packet or the manifest because it changes bootstrap behavior.
 
 ## Commands
 

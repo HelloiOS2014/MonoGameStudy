@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/07-audio.md`, `course/lessons/07-audio.mdx`, 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e04-audio/**`
 - `experiments/e04-audio.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/07-audio.md`, `course/lessons/07-audio.mdx`, 
 
 ## Spec Required
 
-Any change under `experiments/e04-audio/**` or `experiments/e04-audio.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e04-audio/**`, or `experiments/e04-audio.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

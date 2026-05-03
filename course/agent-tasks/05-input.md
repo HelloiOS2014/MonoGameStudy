@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/05-input.md`, `course/lessons/05-input.mdx`, 
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e03-input/**`
 - `experiments/e03-input.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/05-input.md`, `course/lessons/05-input.mdx`, 
 
 ## Spec Required
 
-Any change under `experiments/e03-input/**` or `experiments/e03-input.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e03-input/**`, or `experiments/e03-input.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

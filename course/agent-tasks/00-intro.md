@@ -25,7 +25,7 @@ This lesson maps to `docs/tutorial/00-intro.md`, `course/lessons/00-intro.mdx`, 
 
 ## Spec Required
 
-Any change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, or `experiments/**` requires an approved spec because this lesson only orients learners to existing runtime artifacts.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, or `experiments/**` requires an approved spec because this lesson only orients learners to existing runtime artifacts. This packet does not authorize runtime edits.
 
 ## Commands
 

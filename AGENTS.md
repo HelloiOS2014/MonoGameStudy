@@ -44,6 +44,10 @@ Acceptance: <observable result, command, or output>
 
 If the user gives free-form input, classify it before editing. If acceptance is subjective, stop and propose observable acceptance first.
 
+## Lesson Short Tasks
+
+For prompts such as `完善 input checkpoint`, `补 game loop expected visual state`, or `收紧 rendering agent packet`, map the request to `course/manifest.json`, open the matching `course/agent-tasks/<lesson-id>.md`, and obey its allowed, blocked, and spec-required sections before editing.
+
 ## Task Types
 
 - Lesson-scoped work: course lessons, course metadata, and matching task packets under `course/`.

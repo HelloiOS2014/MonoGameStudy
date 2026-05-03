@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/08-camera-collision-animation.md`, `course/le
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e06-camera-and-collision/**`
 - `experiments/e06-camera-and-collision.Tests/**`
 - `experiments/e07-animation/**`
@@ -27,7 +28,7 @@ This lesson maps to `docs/tutorial/08-camera-collision-animation.md`, `course/le
 
 ## Spec Required
 
-Any change under `experiments/e06-camera-and-collision/**`, `experiments/e06-camera-and-collision.Tests/**`, `experiments/e07-animation/**`, or `experiments/e07-animation.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e06-camera-and-collision/**`, `experiments/e06-camera-and-collision.Tests/**`, `experiments/e07-animation/**`, or `experiments/e07-animation.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

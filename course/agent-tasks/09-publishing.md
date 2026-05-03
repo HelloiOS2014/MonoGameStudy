@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/09-publishing.md`, `course/lessons/09-publish
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e10-publishing/**`
 - `experiments/e10-publishing.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/09-publishing.md`, `course/lessons/09-publish
 
 ## Spec Required
 
-Any change under `experiments/e10-publishing/**` or `experiments/e10-publishing.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e10-publishing/**`, or `experiments/e10-publishing.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 

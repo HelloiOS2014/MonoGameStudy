@@ -18,6 +18,7 @@ This lesson maps to `docs/tutorial/06-content-pipeline.md`, `course/lessons/06-c
 ## Blocked Files
 
 - `demo/integrated-demo/**`
+- `demo/integrated-demo.Tests/**`
 - `experiments/e05-content-pipeline/**`
 - `experiments/e05-content-pipeline.Tests/**`
 - unrelated `course/lessons/**`
@@ -25,7 +26,7 @@ This lesson maps to `docs/tutorial/06-content-pipeline.md`, `course/lessons/06-c
 
 ## Spec Required
 
-Any change under `experiments/e05-content-pipeline/**` or `experiments/e05-content-pipeline.Tests/**` requires an approved spec because it changes tutorial source behavior.
+Any runtime change under `demo/integrated-demo/**`, `demo/integrated-demo.Tests/**`, `experiments/e05-content-pipeline/**`, or `experiments/e05-content-pipeline.Tests/**` requires an approved spec because it changes tutorial source behavior. This packet does not authorize runtime edits.
 
 ## Commands
 
