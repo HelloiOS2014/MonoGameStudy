@@ -1,5 +1,7 @@
 # MonoGame Tutorial
 
+> Legacy migration source: this Markdown path remains readable during v1 migration, but the canonical v1 course source is `course/` once the quality gate is implemented.
+
 This tutorial teaches the existing MonoGame research repo as a finished learning path. Start with setup, move through one concept per experiment, then finish with the integrated 2D collector demo.
 
 ## How To Use This

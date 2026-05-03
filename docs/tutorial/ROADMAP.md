@@ -4,7 +4,7 @@ This file is the planning boundary for the tutorial. It prevents the project fro
 
 ## Current State
 
-Tutorial v1 is complete.
+The legacy Markdown tutorial is complete. The dual-track v1 tutorial is not complete until the quality gate in `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md` passes.
 
 Completion means:
 

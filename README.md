@@ -13,33 +13,26 @@ It is not a production game project.
 
 ## Current Status
 
-Phase 1 research is complete through the focused experiments, integrated demo, closeout report, and technical evaluation.
+The repository is in v1 tutorial migration.
 
-Current usage is framework-oriented:
-
-- humans start with the tutorial site,
-- agents start with the agent operating contract and course manifest,
-- shared health is proven through the verification commands below.
+- `course/` is the intended canonical course source.
+- `course/` currently contains only the migrated lesson slice until the v1 migration plan is complete.
+- `docs/tutorial/` is the legacy migration source and remains readable during migration.
+- `tutorial-site/` renders the current manifest-backed course slice; it is not a complete 00-10 course until the v1 quality gate is implemented.
 
 ## For Humans
 
-Primary course entrypoint:
+During migration, use the legacy Markdown tutorial when you need the complete 00-10 path:
+
+- [`docs/tutorial/README.md`](docs/tutorial/README.md)
+
+Use the tutorial site to inspect the current manifest-backed course slice:
 
 ```bash
 cd tutorial-site
 npm install
 npm run dev
 ```
-
-The tutorial site is manifest-driven and renders the migrated course slice from `course/manifest.json`.
-
-Fallback/reference material:
-
-- Tutorial source history: [`docs/tutorial/README.md`](docs/tutorial/README.md)
-- Troubleshooting: [`docs/tutorial/appendix-troubleshooting.md`](docs/tutorial/appendix-troubleshooting.md)
-- Validation log: [`docs/tutorial/validation-log.md`](docs/tutorial/validation-log.md)
-
-The legacy Markdown tutorial remains useful source material while lessons migrate into `course/lessons/`.
 
 ## For Agents
 

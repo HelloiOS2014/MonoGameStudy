@@ -6,6 +6,14 @@ A development agent maintaining and extending a MonoGame study framework with st
 
 This repository is a learning framework built from completed Phase 1 MonoGame research. It is not a production game project.
 
+## Active Quality Gate
+
+Before claiming v1 tutorial completion, read:
+
+- `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md`
+
+Completion requires evidence-backed scores of at least 95/100 for both content quality and mainline alignment.
+
 ## First Actions
 
 1. Inspect `git status --short --untracked-files=all`.
