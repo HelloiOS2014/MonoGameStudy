@@ -1,12 +1,22 @@
 # MonoGame Tutorial
 
-> Legacy migration source: this Markdown path remains readable during v1 migration, but the canonical v1 course source is `course/` once the quality gate is implemented.
+> Legacy migration source: this Markdown path remains readable for historical comparison, but the canonical v1 course source is `course/`.
 
-This tutorial teaches the existing MonoGame research repo as a finished learning path. Start with setup, move through one concept per experiment, then finish with the integrated 2D collector demo.
+This directory is the legacy Markdown source used to migrate the v1 course into `course/`. For current v1 lesson work, use `course/manifest.json`, `course/lessons/`, and `course/agent-tasks/`.
+
+The legacy tutorial teaches the existing MonoGame research repo as a finished learning path. Start with setup, move through one concept per experiment, then finish with the integrated 2D collector demo.
 
 ## How To Use This
 
-Read the chapters in order. Each chapter has the same shape: goal, command to run, key files, walkthrough, expected output, common problems, and checkpoint.
+Use this directory for historical comparison and migration source material. For current human-facing lessons, run the tutorial site from the repository root:
+
+```bash
+cd tutorial-site
+npm install
+npm run dev
+```
+
+The site renders the complete 00-10 v1 course from `course/manifest.json`.
 
 Do not expand the demo while reading the tutorial. The point is to understand the finished baseline first, then decide whether the next milestone is editorial hardening, visual evidence, a static site, or a separate tiny game.
 

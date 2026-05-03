@@ -8,6 +8,8 @@ This directory holds detailed operating rules for agents maintaining the MonoGam
 
 Per-lesson task packets live in `course/agent-tasks/`. Use this directory only for general agent operating rules.
 
+Current v1 lesson work is driven by `course/manifest.json`. Treat `docs/tutorial/` as legacy migration source, not the primary course source.
+
 ## Task Flow
 
 1. Run `git status --short --untracked-files=all`.

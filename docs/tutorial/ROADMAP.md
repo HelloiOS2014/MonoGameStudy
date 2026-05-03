@@ -4,9 +4,11 @@ This file is the planning boundary for the tutorial. It prevents the project fro
 
 Active dual-track v1 planning is governed by `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md`. This legacy Markdown roadmap records historical planning for `docs/tutorial/`; it does not override the v1 migration plan.
 
+Dual-track v1 completion is governed by `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md` and the final audit at `docs/reports/tutorial-v1-quality-audit.md`.
+
 ## Current State
 
-The legacy Markdown tutorial is complete. The dual-track v1 tutorial is not complete until the quality gate in `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md` passes.
+The legacy Markdown tutorial is complete. The dual-track v1 course is canonical in `course/manifest.json`, `course/lessons/`, `course/agent-tasks/`, and `tutorial-site/`. The quality audit records the completion evidence.
 
 Legacy Markdown completion means:
 
@@ -20,7 +22,7 @@ Legacy Markdown completion means:
 
 ## Legacy Historical Milestones
 
-These milestones describe the old Markdown tutorial path. They are superseded for active dual-track v1 migration, where `course/` is the intended canonical course source after the quality gate is implemented.
+These milestones describe the old Markdown tutorial path. They are superseded for active dual-track v1 work, where `course/` is the canonical course source.
 
 ### v1.1 Editorial Hardening
 

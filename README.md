@@ -13,26 +13,29 @@ It is not a production game project.
 
 ## Current Status
 
-The repository is in v1 tutorial migration.
+The repository has a complete dual-track v1 tutorial.
 
-- `course/` is the intended canonical course source.
-- `course/` currently contains only the migrated lesson slice until the v1 migration plan is complete.
-- `docs/tutorial/` is the legacy migration source and remains readable during migration.
-- `tutorial-site/` renders the current manifest-backed course slice; it is not a complete 00-10 course until the v1 quality gate is implemented.
+- `course/manifest.json` is the canonical course source.
+- `course/lessons/` contains the complete 00-10 human lesson path.
+- `course/agent-tasks/` contains the matching 00-10 lesson task packets for agents.
+- `tutorial-site/` renders the complete 00-10 v1 course from `course/manifest.json`.
+- `docs/tutorial/` is the legacy migration source.
 
 ## For Humans
 
-During migration, use the legacy Markdown tutorial when you need the complete 00-10 path:
-
-- [`docs/tutorial/README.md`](docs/tutorial/README.md)
-
-Use the tutorial site to inspect the current manifest-backed course slice:
+Primary course entrypoint:
 
 ```bash
 cd tutorial-site
 npm install
 npm run dev
 ```
+
+The tutorial site renders the complete 00-10 v1 course from `course/manifest.json`.
+
+Legacy migration source:
+
+- [`docs/tutorial/README.md`](docs/tutorial/README.md)
 
 ## For Agents
 
@@ -100,7 +103,7 @@ game_demo/
   AGENTS.md                  required first-read file for agents
   GameDemo.sln               top-level solution
   global.json                .NET 10 SDK selection
-  course/                    manifest, lessons, agent task packets, evidence placeholders
+  course/                    canonical manifest, lessons, agent task packets, and evidence
   tutorial-site/             Astro tutorial site generated from the course manifest
   tools/                     environment, course, and tutorial verification
   docs/tutorial/             legacy human learning path and migration source
