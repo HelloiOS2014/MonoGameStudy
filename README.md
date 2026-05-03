@@ -6,8 +6,8 @@ This repository is a MonoGame Study Framework built from completed Phase 1 resea
 
 It serves two audiences:
 
-- humans learning MonoGame through the existing tutorial, experiments, and integrated demo,
-- agents maintaining and extending the framework through explicit task types, boundaries, and verification commands.
+- humans learning MonoGame through the manifest-driven tutorial site, course lessons, experiments, and integrated demo,
+- agents maintaining and extending the framework through the course manifest, lesson task packets, explicit boundaries, and verification commands.
 
 It is not a production game project.
 
@@ -17,25 +17,37 @@ Phase 1 research is complete through the focused experiments, integrated demo, c
 
 Current usage is framework-oriented:
 
-- humans start with the tutorial,
-- agents start with the agent operating contract,
+- humans start with the tutorial site,
+- agents start with the agent operating contract and course manifest,
 - shared health is proven through the verification commands below.
 
 ## For Humans
 
-Start here:
+Primary course entrypoint:
 
-- Tutorial: [`docs/tutorial/README.md`](docs/tutorial/README.md)
+```bash
+cd tutorial-site
+npm install
+npm run dev
+```
+
+The tutorial site is manifest-driven and renders the migrated course slice from `course/manifest.json`.
+
+Fallback/reference material:
+
+- Tutorial source history: [`docs/tutorial/README.md`](docs/tutorial/README.md)
 - Troubleshooting: [`docs/tutorial/appendix-troubleshooting.md`](docs/tutorial/appendix-troubleshooting.md)
 - Validation log: [`docs/tutorial/validation-log.md`](docs/tutorial/validation-log.md)
 
-The tutorial is Markdown-first. It walks through the existing MonoGame experiments and integrated demo without changing the code.
+The legacy Markdown tutorial remains useful source material while lessons migrate into `course/lessons/`.
 
 ## For Agents
 
 Start here:
 
 - Agent entrypoint: [`AGENTS.md`](AGENTS.md)
+- Course manifest: [`course/manifest.json`](course/manifest.json)
+- Lesson task packets: [`course/agent-tasks/`](course/agent-tasks/)
 - Agent guide: [`docs/agents/README.md`](docs/agents/README.md)
 - Task types: [`docs/agents/task-types.md`](docs/agents/task-types.md)
 - Verification matrix: [`docs/agents/verification.md`](docs/agents/verification.md)
@@ -56,6 +68,7 @@ Fresh workspace path:
 
 ```bash
 ./tools/check-env.sh
+./tools/check-course.sh
 dotnet restore GameDemo.sln
 dotnet build GameDemo.sln -m:1
 ./tools/check-tutorial.sh
@@ -67,6 +80,8 @@ Fast documentation checks:
 git diff --check
 bash -n tools/check-env.sh
 bash -n tools/check-tutorial.sh
+bash -n tools/check-course.sh
+./tools/check-course.sh
 ```
 
 `tools/check-tutorial.sh` opens short-lived MonoGame DesktopGL smoke windows and publishes `e10`.
@@ -78,7 +93,7 @@ See [`docs/agents/boundaries.md`](docs/agents/boundaries.md).
 High-level boundaries:
 
 - no Godot track,
-- no tutorial website in this pass,
+- no lesson without both a human lesson and an agent task packet,
 - no casual expansion of `demo/integrated-demo`,
 - no new experiment without approved spec or plan,
 - no target platform change away from macOS DesktopGL without spec,
@@ -92,9 +107,11 @@ game_demo/
   AGENTS.md                  required first-read file for agents
   GameDemo.sln               top-level solution
   global.json                .NET 10 SDK selection
-  tools/                     environment and tutorial verification
-  docs/tutorial/             human learning path
-  docs/agents/               agent operating contract
+  course/                    manifest, lessons, agent task packets, evidence placeholders
+  tutorial-site/             Astro tutorial site generated from the course manifest
+  tools/                     environment, course, and tutorial verification
+  docs/tutorial/             legacy human learning path and migration source
+  docs/agents/               general agent operating contract
   docs/reports/              Phase 1 closeout and evaluation
   experiments/               focused MonoGame reference experiments
   demo/integrated-demo/      capstone validation demo

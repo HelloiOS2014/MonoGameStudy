@@ -9,10 +9,12 @@ This repository is a learning framework built from completed Phase 1 MonoGame re
 ## First Actions
 
 1. Inspect `git status --short --untracked-files=all`.
-2. Classify the task as `Docs`, `Fix`, `Experiment`, `Demo`, `Tooling`, or `Research`.
-3. Read the matching guidance under `docs/agents/`.
-4. Identify the files allowed for the task.
-5. Identify verification before editing.
+2. Read `course/manifest.json` for lesson-scoped work.
+3. For lesson-scoped work, open the matching `course/agent-tasks/<lesson-id>.md`.
+4. Use `docs/agents/task-types.md` only after deciding whether the request is lesson-scoped.
+5. Read the matching guidance under `docs/agents/`.
+6. Identify the files allowed for the task.
+7. Identify verification before editing.
 
 For terse prompts such as `continue`, `go`, `干`, or `继续`, inspect git state plus the relevant roadmap or spec before choosing the next action.
 
@@ -36,6 +38,7 @@ If the user gives free-form input, classify it before editing. If acceptance is 
 
 ## Task Types
 
+- Lesson-scoped work: course lessons, course metadata, and matching task packets under `course/`.
 - `Docs`: tutorial, README, reports, roadmap, agent docs.
 - `Fix`: broken build, smoke test, script, or incorrect docs.
 - `Experiment`: add or extend `experiments/eNN-*`.
@@ -47,6 +50,8 @@ If the user gives free-form input, classify it before editing. If acceptance is 
 
 ## Required Reading
 
+- `course/manifest.json` for lesson metadata, code mapping, commands, and evidence state.
+- `course/agent-tasks/<lesson-id>.md` for lesson-scoped allowed files and acceptance.
 - `docs/agents/task-types.md` for classification.
 - `docs/agents/task-template.md` for prompt shape.
 - `docs/agents/development-protocol.md` for the work loop.
@@ -56,6 +61,8 @@ If the user gives free-form input, classify it before editing. If acceptance is 
 ## Verification Rule
 
 Do not claim completion without fresh verification evidence from this task. Report the command, exit code, and result.
+
+Run `./tools/check-course.sh` for lesson, manifest, task packet, or tutorial-site navigation changes.
 
 ## Git Rules
 
