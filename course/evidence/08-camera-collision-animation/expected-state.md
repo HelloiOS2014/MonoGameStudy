@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The camera and collision experiment should show camera-relative movement and collision feedback. The animation experiment should show frame-based animation and state changes controlled by the character state machine.
+Camera/collision smoke logs AABB and circle collision; animation smoke logs idle/walk/jump transitions.
 
 ## Command Evidence
 
-Both e06 and e07 smoke runs should terminate from their configured frame limits without manual input.
+The e06 smoke should log AABB and circle collision states. The e07 smoke should log animation transitions and terminate from its configured frame limit without manual input.
 
 ## Verification Boundary
 

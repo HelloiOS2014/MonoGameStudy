@@ -5,7 +5,7 @@ title: Integrated Demo
 
 ## Goal
 
-Connect the previous concepts into the playable collector demo.
+Connect the previous concepts into the playable collector demo capstone.
 
 ## Run
 
@@ -37,7 +37,7 @@ Smoke: exit.
 
 ## Expected Visual State
 
-The expected visual state is the collector arena starting at the Start phase. Smoke mode collects all pickups, reaches Won, restarts, and exits.
+Collector arena starts at Start phase, smoke collects all pickups, reaches Won, restarts, and exits.
 
 ## Key Files
 
@@ -51,7 +51,11 @@ The expected visual state is the collector arena starting at the Start phase. Sm
 
 The demo has four phases: `Start`, `Playing`, `Won`, and `Lost`. `DemoState` is the deterministic model. It owns player position, score, pickups, hazards, phase transitions, circle collision checks, and restart behavior.
 
-`Game1` connects the model to MonoGame by polling input, loading content, drawing the arena, logging phase changes, and playing the collect sound. Smoke mode disables vsync, uses variable timestep at the MonoGame layer, then feeds the model a fixed `1/60` simulation step so the capstone can be checked without manual input.
+`DemoTypes.cs` defines the phase and input/result records. `DemoState.CreateDefault` starts in `Start`; a `DemoInput` with `StartPressed` calls `ResetRun`, enters `Playing`, clears score, and restores pickups. Moving right through the deterministic pickup layout raises the score to `DemoState.TargetScore`, which sets `Phase` to `Won`.
+
+`Game1` connects the model to MonoGame by polling input, loading content, drawing the arena, logging phase changes, and playing the collect sound. Smoke mode disables vsync, uses variable timestep at the MonoGame layer, then feeds the model a fixed `1/60` simulation step from `DemoSmokeSettings` so the capstone can be checked without manual input.
+
+This integrated demo is the course capstone and validation harness. It combines content, input, audio, collision, state, and smoke verification from earlier lessons; it is not a production-game expansion target.
 
 ## Common Failures
 

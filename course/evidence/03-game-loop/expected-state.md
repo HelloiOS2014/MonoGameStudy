@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The e01 window starts in fixed timestep mode with a title matching `E01 Game Loop - Fixed 60 Hz`. Toggling with `F1` switches the title to the variable timestep state.
+The e01 window starts fixed timestep with title `E01 Game Loop - Fixed 60 Hz`.
 
 ## Command Evidence
 
-The smoke run should print `Update: timestep mode changed to Variable.` and then `Smoke: exit.` before terminating.
+Smoke toggles to variable timestep. Stdout includes `Update: timestep mode changed to Variable.` and then `Smoke: exit.` before terminating.
 
 ## Verification Boundary
 

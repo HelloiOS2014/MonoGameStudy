@@ -19,7 +19,7 @@ The script reports macOS readiness, the active .NET SDK, `global.json`, MonoGame
 
 ## Expected Visual State
 
-No DesktopGL window opens in setup. The expected state is terminal output from `./tools/check-env.sh` showing macOS, `global.json`, .NET 10, and the `mgdesktopgl` template check.
+No GUI window; terminal readiness output is the expected state. `./tools/check-env.sh` should show macOS, `global.json`, .NET 10, and the `mgdesktopgl` template check.
 
 ## Key Files
 
@@ -33,6 +33,8 @@ No DesktopGL window opens in setup. The expected state is terminal output from `
 
 `tools/check-env.sh` is the repository-level readiness check. It verifies the current OS target, confirms `global.json` exists, checks that the selected SDK is .NET 10, and confirms the `mgdesktopgl` template is installed. Run it from the repository root before opening a MonoGame window.
 
+This setup lesson does not change runtime code. It protects the later `Game1` lifecycle lessons by making sure the SDK, template, solution, and MonoGame tooling assumptions are visible before a GUI command fails deeper in the course.
+
 ## Common Failures
 
 - `dotnet` is missing from `PATH`: install the pinned SDK and open a fresh shell.
@@ -42,7 +44,7 @@ No DesktopGL window opens in setup. The expected state is terminal output from `
 
 ## Exercise
 
-Run `./tools/check-env.sh`, then explain one healthy line and one possible warning or failure line.
+Run `./tools/check-env.sh` and explain one ok line and one possible warning line.
 
 ## Checkpoint
 

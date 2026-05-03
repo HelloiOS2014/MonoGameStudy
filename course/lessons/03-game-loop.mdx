@@ -26,7 +26,7 @@ If you run manually, press `F1` and watch the window title switch between `Fixed
 
 ## Expected Visual State
 
-The DesktopGL window uses the e01 game loop experiment. In manual mode the title starts as `E01 Game Loop - Fixed 60 Hz`; pressing `F1` switches to variable timestep. In smoke mode, stdout must include `Update: timestep mode changed to Variable.` and `Smoke: exit.`.
+e01 window starts fixed timestep, smoke toggles to variable timestep, stdout includes `Update: timestep mode changed to Variable.`.
 
 ## Key Files
 
@@ -49,7 +49,7 @@ MonoGame exposes timestep behavior through `IsFixedTimeStep`. When it is true, t
 
 ## Exercise
 
-Find where fixed/variable timestep is toggled and where the active mode is displayed.
+Find where fixed/variable timestep is toggled and where the mode is displayed.
 
 ## Checkpoint
 

@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The e03 input experiment opens a window where input state affects player movement or on-screen status. Keyboard, mouse, and optional gamepad state are represented through the lesson's input snapshot model.
+Window shows a green square.
 
 ## Command Evidence
 
-The smoke run should terminate through `E03_SMOKE_EXIT_AFTER_FRAMES` without requiring manual input.
+Smoke moves via axis, mouse, and axis again with frame 40, 80, and 120 logs before `Smoke: exit.`.
 
 ## Verification Boundary
 

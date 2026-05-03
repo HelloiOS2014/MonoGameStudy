@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The e05 content-pipeline experiment opens with loaded texture, font, and sound assets available through MonoGame content names.
+Window shows content-loaded texture/font/sound state; broken MGCB command fails with missing texture path.
 
 ## Command Evidence
 
-The broken-content command is expected to demonstrate a content pipeline failure path rather than a playable state.
+The working smoke should log loaded logical asset names for the texture, font, and sound. The broken-content command is expected to fail on the missing texture path.
 
 ## Verification Boundary
 

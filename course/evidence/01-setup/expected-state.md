@@ -2,7 +2,7 @@
 
 ## Visual State
 
-No GUI window; command output is the expected state.
+No GUI window; terminal readiness output is the expected state.
 
 ## Command Evidence
 

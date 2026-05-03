@@ -28,7 +28,7 @@ Manual mode opens a window with two status blocks. Press `Space` for the effect 
 
 ## Expected Visual State
 
-The expected visual state is a DesktopGL window with effect and music state blocks. Smoke mode starts and stops music and plays sound effects while logging those audio actions.
+Window shows effect/music state blocks; stdout shows music start/stop and sound-effect playback.
 
 ## Key Files
 
@@ -41,7 +41,9 @@ The expected visual state is a DesktopGL window with effect and music state bloc
 
 MonoGame uses `SoundEffect` for short, latency-sensitive sounds such as clicks or pickups. `Song` is loaded content for music, and `MediaPlayer` is the global player used to play, stop, and loop songs.
 
-`AudioControlState` keeps sound-effect and music actions separate. The smoke run starts the loop, plays the effect, stops music, plays the effect while music is stopped, then restarts music and plays the effect on the same frame.
+`AudioAssets.cs` names the content as `Audio/effect` for the `SoundEffect` path and `Audio/music_loop` for the `Song` path. `Game1.LoadContent` loads those logical names, sets `MediaPlayer.IsRepeating`, and draws two visual blocks: one for music state and one for the effect flash.
+
+`AudioControlState` keeps sound-effect and music actions separate so tests can cover the decision logic without audio hardware or a MonoGame window. The smoke setting `E04_SMOKE_EXIT_AFTER_FRAMES=150` drives deterministic frames: start the loop, play the effect, stop music, play the effect while music is stopped, then restart music and play the effect on the same frame.
 
 ## Common Failures
 

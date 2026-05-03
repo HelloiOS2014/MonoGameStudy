@@ -36,7 +36,7 @@ The broken MGCB command should fail with a missing source file error that mentio
 
 ## Expected Visual State
 
-The expected visual state is a DesktopGL window showing content-loaded texture/font/sound state. The deliberate MGCB command is expected to fail because it references a missing texture path.
+Window shows content-loaded texture/font/sound state; broken MGCB command fails with missing texture path.
 
 ## Key Files
 
@@ -47,7 +47,9 @@ The expected visual state is a DesktopGL window showing content-loaded texture/f
 
 ## Walkthrough
 
-MGCB compiles source assets into runtime `.xnb` files. Game code loads compiled files through `Content.Load<T>` using logical names, not source filenames. This experiment loads `Images/pipeline_tile`, `PipelineStatus`, and `Audio/beep` from constants in `ContentAssets.cs`.
+MGCB compiles source assets into runtime `.xnb` files. Game code loads compiled files through `Content.Load<T>` using logical names, not source filenames. `ContentAssets.cs` is the small contract between the MGCB file and `Game1`: `TextureName` is `Images/pipeline_tile`, `FontName` is `PipelineStatus`, and `SoundName` is `Audio/beep`.
+
+`Content/Content.mgcb` builds `Images/pipeline_tile.png`, `PipelineStatus.spritefont`, and `Audio/beep.wav`; the extension is not part of the runtime logical asset name. `Game1.LoadContent` loads those names, then the smoke setting `E05_SMOKE_EXIT_AFTER_FRAMES=90` gives the GUI enough frames to draw the loaded tile, text, and sound status before exiting.
 
 `Content.RootDirectory = "Content"` tells MonoGame where to look for compiled content. The broken MGCB file is intentional; it references `Images/missing_texture.png` from the wrong location. The project sets `EnableMGCBItems=false` so MonoGame build targets do not glob and build the deliberate failure file during normal project builds.
 

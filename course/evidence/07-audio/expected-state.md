@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The e04 audio experiment opens its control screen and exposes the current audio control state through on-screen text.
+Window shows effect/music state blocks; stdout shows music start/stop and sound-effect playback.
 
 ## Command Evidence
 
-Short sound effects and looping music should be controlled through `SoundEffect`, `Song`, and `MediaPlayer` paths described by the lesson.
+Short sound effects and looping music should follow the `SoundEffect`, `Song`, and `MediaPlayer` paths described by the lesson.
 
 ## Verification Boundary
 

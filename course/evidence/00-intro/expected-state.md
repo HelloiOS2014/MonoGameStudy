@@ -2,11 +2,11 @@
 
 ## Visual State
 
-Running the integrated demo opens the collector arena. The player is visible with yellow pickups, red hazards, score/status text, and prompts for start, play, win, loss, and restart phases.
+Integrated demo manual mode opens a small collector arena with the player, yellow pickups, red hazards, score/status text, and phase-specific prompts.
 
 ## Command Evidence
 
-The non-interactive smoke command should advance through the demo and print the phase transition lines used by `course/lessons/00-intro.mdx`, including win and restart output before `Smoke: exit.`.
+Smoke mode reaches started, won, restarted, and exit logs: `Phase: started.`, `Phase: won.`, `Phase: restarted.`, and `Smoke: exit.`.
 
 ## Verification Boundary
 

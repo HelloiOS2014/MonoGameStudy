@@ -33,7 +33,7 @@ Smoke: exit.
 
 ## Expected Visual State
 
-The expected visual state spans two DesktopGL experiments. Camera/collision shows camera pan/zoom plus debug collision shapes. Animation shows a simple character state changing through idle, walk, and jump frames.
+Camera/collision smoke logs AABB and circle collision; animation smoke logs idle/walk/jump transitions.
 
 ## Key Files
 
@@ -48,7 +48,11 @@ The expected visual state spans two DesktopGL experiments. Camera/collision show
 
 MonoGame gives you drawing primitives and matrices; it does not provide a built-in 2D camera, collision system, or animation graph.
 
-`Camera2D` keeps world-space position and zoom while drawing passes a transform matrix to `SpriteBatch.Begin`. `Collision2D` contains deterministic AABB and circle overlap tests. Animation is regular game code: `FrameAnimation` advances frames, `CharacterStateMachine` emits transitions, and `AnimationController` maps character state to animation frames.
+`Camera2D` keeps world-space position and zoom while drawing passes a transform matrix to `SpriteBatch.Begin`. The GUI smoke setting `E06_SMOKE_EXIT_AFTER_FRAMES=180` pans, zooms, and moves shapes on fixed frame ranges, so the log can prove the same AABB and circle collision path that the window draws in red or green.
+
+`Collision2D` contains deterministic AABB and circle overlap tests. Keeping that math outside `Game1` lets the test project verify collision behavior without rendering, while `CollisionScene` supplies the moving and static shapes that `Game1` draws.
+
+Animation is regular game code: `FrameAnimation` advances frames, `CharacterStateMachine` emits idle, walk, and jump transitions, and `AnimationController` maps character state to animation frames. The GUI smoke setting `E07_SMOKE_EXIT_AFTER_FRAMES=170` feeds a deterministic input sequence so the transition log and the drawn animation agree.
 
 ## Common Failures
 

@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The e02 rendering experiment opens a window with multiple drawn sprites and status text. The smoke toggle should move through the render modes without crashing.
+Window shows 1000 sprites plus overlay text.
 
 ## Command Evidence
 
-The learner can connect what appears on screen to `SpriteBatch` usage, sprite field state, render mode state, and the loaded spritefont.
+Smoke toggles from batched to unbatched mode, proving the overlay and `RenderModeState` changed together.
 
 ## Verification Boundary
 

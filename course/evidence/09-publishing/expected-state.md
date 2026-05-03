@@ -2,11 +2,11 @@
 
 ## Visual State
 
-If the published app is launched manually, it should behave like the integrated demo or experiment build it packages.
+No learning window required before published smoke; published executable logs rendered frames and exits without `dotnet` on PATH.
 
 ## Command Evidence
 
-The publish lesson is expected to produce a macOS DesktopGL publish output directory and a repeatable command transcript for the selected runtime target.
+The publish lesson is expected to produce `experiments/e10-publishing/bin/Release/net10.0/osx-x64/publish/E10Publishing` and run it with a stripped `PATH`.
 
 ## Verification Boundary
 

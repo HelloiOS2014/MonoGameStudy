@@ -2,11 +2,11 @@
 
 ## Visual State
 
-The capstone opens the integrated collector arena. The player can start, collect yellow pickups, avoid red hazards, see score/status text, reach win or loss phases, and restart from the end state.
+Collector arena starts at Start phase, smoke collects all pickups, reaches Won, restarts, and exits.
 
 ## Command Evidence
 
-The non-interactive smoke command should run to the configured frame limit, print phase progress, and terminate with `Smoke: exit.`.
+The non-interactive smoke command should print start, collect, won, restart, and exit progress from the deterministic capstone model.
 
 ## Verification Boundary
 

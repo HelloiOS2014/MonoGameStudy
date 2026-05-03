@@ -24,7 +24,7 @@ Smoke: exit.
 
 ## Expected Visual State
 
-The expected visual state is a 960x540 DesktopGL window with 1000 sprites and overlay text showing mode, sprite count, FPS, and frame time. Smoke mode toggles from batched drawing to intentionally unbatched drawing.
+Window shows 1000 sprites plus overlay text; smoke toggles from batched to unbatched mode.
 
 ## Key Files
 
@@ -38,6 +38,8 @@ The expected visual state is a 960x540 DesktopGL window with 1000 sprites and ov
 MonoGame's common 2D drawing path is `SpriteBatch`: call `Begin`, queue texture and text draws, then call `End` to flush work to the GPU.
 
 The experiment draws 1000 sprites in two modes. `Batched` wraps all sprite draws in one `Begin`/`End` pair. `Unbatched` intentionally uses one pair per sprite to make broken batching visible. The overlay uses `SpriteBatch.DrawString` and a loaded `SpriteFont` to print teaching signals, not benchmark-grade numbers.
+
+`RenderModeState` keeps the mode toggle outside rendering calls, so the draw path can stay focused on `SpriteBatch` usage. The smoke variables make the GUI lesson verifiable by logging the same mode change the learner sees in the overlay.
 
 ## Common Failures
 

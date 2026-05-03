@@ -27,7 +27,7 @@ The publish output directory is `experiments/e10-publishing/bin/Release/net10.0/
 
 ## Expected Visual State
 
-No learning window is required before the published smoke. The published executable is expected to log rendered frames and exit while running without `dotnet` on `PATH`.
+No learning window is required before published smoke; published executable logs rendered frames and exits without `dotnet` on `PATH`.
 
 ## Key Files
 
@@ -38,6 +38,8 @@ No learning window is required before the published smoke. The published executa
 ## Walkthrough
 
 The publish command chooses the `osx-x64` runtime identifier and uses `--self-contained true`, so the output includes runtime files needed by the app. `PublishReadyToRun=false` keeps this first publishing pass simpler.
+
+The executable path is `experiments/e10-publishing/bin/Release/net10.0/osx-x64/publish/E10Publishing`. The smoke command runs that file directly with `E10_SMOKE_EXIT_AFTER_FRAMES=60`, so the published app logs rendered frames and exits on its own.
 
 The smoke command uses a minimal `PATH` with `/usr/bin:/bin`. That proves the published executable can start without finding `dotnet` from the SDK. The output is still a publish directory, not a signed `.app` bundle, installer, or notarized macOS release.
 

@@ -28,6 +28,7 @@ Manual mode opens a MonoGame window. Press `Enter` to start, collect the yellow 
 Smoke mode exits by itself. Near the end of stdout, look for:
 
 ```text
+Phase: started.
 Phase: won.
 Phase: restarted.
 Smoke: exit.
@@ -35,7 +36,7 @@ Smoke: exit.
 
 ## Expected Visual State
 
-Manual mode opens the integrated demo collector arena. The visible state includes the player, yellow pickups, red hazards, score/status text, and phase-specific prompts for start, play, win, loss, and restart.
+Integrated demo manual mode opens a small collector arena; smoke mode reaches started, won, restarted, and exit logs.
 
 ## Key Files
 
@@ -50,6 +51,8 @@ The repo has two main learning areas. `experiments/` contains topic-focused fini
 
 Use the experiments when you want to isolate one subsystem. Use the integrated demo when you want to see the pieces fit together. The demo remains capstone evidence for this learning framework, not a production game expansion target.
 
+Most runtime lessons follow the same pattern: `Game1` owns MonoGame lifecycle wiring, while deterministic state is moved into smaller classes where tests can run without a graphics device. Smoke settings make GUI experiments report repeatable command evidence instead of requiring manual screenshots for every checkpoint.
+
 ## Common Failures
 
 - This tutorial assumes macOS DesktopGL. Other platforms may work, but they were not the Phase 1 target.
@@ -58,7 +61,7 @@ Use the experiments when you want to isolate one subsystem. Use the integrated d
 
 ## Exercise
 
-Identify one file under `experiments/` and one file under `demo/integrated-demo/` that serve different learning purposes. Explain why one is topic-focused and the other is capstone-focused.
+Identify one experiment and one integrated-demo file that serve different learning purposes.
 
 ## Checkpoint
 

@@ -25,7 +25,7 @@ Stdout starts with initialization information and then prints frame information 
 
 ## Expected Visual State
 
-The expected visual state is a 960x540 CornflowerBlue DesktopGL window titled `E01 Game Loop - Fixed 60 Hz`. There is no loaded content in this first window lesson.
+960x540 blue DesktopGL window with title `E01 Game Loop - Fixed 60 Hz`; stdout logs Initialize and LoadContent.
 
 ## Key Files
 
@@ -40,6 +40,8 @@ The expected visual state is a 960x540 CornflowerBlue DesktopGL window titled `E
 
 `Game1` inherits `Microsoft.Xna.Framework.Game`. MonoGame calls `Initialize` for startup state, `LoadContent` after the graphics device exists, `Update` for simulation and input, and `Draw` for rendering. This first experiment clears the window to `CornflowerBlue` and logs that no content is loaded yet.
 
+This lesson is intentionally thin on game behavior. It establishes where the MonoGame lifecycle lives before later lessons move deterministic state into separate classes and tests.
+
 ## Common Failures
 
 - The first run may restore NuGet packages and project-local tools before the window appears.
@@ -49,7 +51,7 @@ The expected visual state is a 960x540 CornflowerBlue DesktopGL window titled `E
 
 ## Exercise
 
-Find the call to `Game.Run()` and list the lifecycle methods MonoGame calls in `Game1`.
+Find the call to `Game.Run()` and list the lifecycle methods called by MonoGame.
 
 ## Checkpoint
 

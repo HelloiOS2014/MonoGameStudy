@@ -2,11 +2,11 @@
 
 ## Visual State
 
-Running the e01 DesktopGL project opens a plain MonoGame window for the first-window checkpoint. The title and project layout should identify the experiment as the e01 game-loop project.
+960x540 blue DesktopGL window with title `E01 Game Loop - Fixed 60 Hz`.
 
 ## Command Evidence
 
-The learner can point to `Program.cs`, `Game1.cs`, and the `.csproj` as the minimum MonoGame DesktopGL project shape.
+Stdout logs `Initialize` and `LoadContent` before frame logs. The learner can point to `Program.cs`, `Game1.cs`, and the `.csproj` as the minimum MonoGame DesktopGL project shape.
 
 ## Verification Boundary
 
