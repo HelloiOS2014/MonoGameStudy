@@ -1,7 +1,15 @@
 # MonoGame Dual-Track Tutorial Architecture Design
 
 Date: 2026-05-03
-Status: Draft for strict review
+Status: Superseded
+
+Superseded by:
+
+- `docs/superpowers/specs/2026-05-03-monogame-dual-track-tutorial-v1-quality-gate-design.md`
+
+Reason:
+
+This design allowed a two-lesson implementation slice to be treated as meaningful progress toward the tutorial product. That proved too weak. The replacement spec makes `course/` the only course source, requires the complete 00-10 lesson set for v1, and turns content quality plus mainline alignment scores into hard completion gates.
 
 ## Purpose
 
